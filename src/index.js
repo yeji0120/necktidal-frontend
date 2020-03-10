@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./Routes";
-import 'styles/index.css';
+import 'styles/reset.css';
 import 'fonts/nationale-regular.woff2';
 import 'fonts/nationale-bold.woff2';
 import 'fonts/nationale-demibold.woff2';
