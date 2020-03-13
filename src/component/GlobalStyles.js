@@ -99,6 +99,10 @@ video {
 body {
   margin: 0;
   font-family: "nationale-regular", "nationale-demibold", "nationale-bold";
+  scrollbar-width:none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 ​article,

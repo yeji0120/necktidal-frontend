@@ -88,10 +88,10 @@ video {
   border: none;
 }
 
-body {
+/* body {
   margin: 0;
   font-family: "nationale-regular", "nationale-demibold", "nationale-bold";
-}
+} */
 
 ​article,
 aside,
@@ -171,7 +171,7 @@ select {
 ​textarea {
   resize: none;
 }
-@font-face {
+/* @font-face {
   font-family: "nationale-regular";
   src: local("nationale-regular"),
     url("../fonts/nationale-regular.woff2") format("truetype");
@@ -185,4 +185,4 @@ select {
   font-family: "nationale-bold";
   src: local("nationale-bold"),
     url("../fonts/nationale-bold.woff2") format("truetype");
-}
+} */
