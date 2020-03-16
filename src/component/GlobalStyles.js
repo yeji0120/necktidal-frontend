@@ -1,11 +1,12 @@
 import { createGlobalStyle } from "styled-components";
-import 'fonts/nationale-regular.woff2';
-import 'fonts/nationale-bold.woff2';
-import 'fonts/nationale-demibold.woff2';
+// import 'fonts/nationale-regular.woff2';
+// import 'fonts/nationale-bold.woff2';
+// import 'fonts/nationale-demibold.woff2';
 
 
 
 const GlobalStyles = createGlobalStyle`
+
 html,
 body,
 div,
@@ -103,7 +104,7 @@ body {
 }
 body::-webkit-scrollbar {
   display: none;
-}
+
 
 ​article,
 aside,
@@ -183,7 +184,7 @@ select {
 ​textarea {
   resize: none;
 }
-@font-face {
+/* @font-face {
   font-family: "nationale-regular";
   src: local("nationale-regular"),
     url("../fonts/nationale-regular.woff2") format("truetype");
@@ -197,7 +198,7 @@ select {
   font-family: "nationale-bold";
   src: local("nationale-bold"),
     url("../fonts/nationale-bold.woff2") format("truetype");
-}
+} */
 `
 
 
