@@ -90,8 +90,13 @@ video {
 
 /* body {
   margin: 0;
+<<<<<<< HEAD
   font-family: "nationale-regular", "nationale-demibold", "nationale-bold";
 } */
+=======
+  font-family: nationale-regular;
+}
+>>>>>>> b5dd15a... 타이달 메인페이지를 완료하였읍니다. 그리고 로그인페이지, 회원가입페이지 레이아웃을 만들었읍니다.
 
 ​article,
 aside,
@@ -173,16 +178,13 @@ select {
 }
 /* @font-face {
   font-family: "nationale-regular";
-  src: local("nationale-regular"),
-    url("../fonts/nationale-regular.woff2") format("truetype");
+  src:
+    url("../fonts/nationale-regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "nationale-demibold";
-  src: local("nationale-demibold"),
-    url("../fonts/nationale-demibold.woff2") format("truetype");
+  src:
+    url("../fonts/nationale-demibold.woff2") format("woff2");
 }
 @font-face {
   font-family: "nationale-bold";
-  src: local("nationale-bold"),
-    url("../fonts/nationale-bold.woff2") format("truetype");
-} */

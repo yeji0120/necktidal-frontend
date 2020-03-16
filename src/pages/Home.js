@@ -19,7 +19,7 @@ const Home = () => {
       </Container>
     </div>
   )
-}
+
 const Container = styled.div`
 display: flex;
 justify-content: flex-end;
@@ -35,5 +35,7 @@ const Right = styled.div`
 width: calc(100% - 240px);
 height: 100vh;
 `;
+
+const Tidalhomediv = styled.div``
 
 export default Home
