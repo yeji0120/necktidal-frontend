@@ -47,12 +47,10 @@ const RightIcons = styled.div`
 `;
 const ChromecastIcon = styled.div`
   width: 20px;
-  height: 20px;
   color: white;
 `;
 const FullscreenIcon = styled.div`
   width: 18px;
-  height: 18px;
   margin-left: 15px;
   color: white;
 `;

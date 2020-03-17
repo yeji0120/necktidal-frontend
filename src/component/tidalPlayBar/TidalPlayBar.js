@@ -12,7 +12,7 @@ import { Expand } from "@styled-icons/evaicons-solid";
 
 const TidalPlayBar = () => {
   const [sizeUp, setSizeUp] = useState(false);
-  console.log(sizeUp);
+  console.log("sizeUp", sizeUp);
 
   return (
     <Container>

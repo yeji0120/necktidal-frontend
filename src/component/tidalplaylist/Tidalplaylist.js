@@ -49,14 +49,28 @@ const Tidalplaylist = props => {
 // `;
 
 const PlaylistMainContainer = styled.div`
-  position: relative;
+  /* position: relative; */
   overflow-x: hidden;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  position: absolute;
+  bottom: 0;
+  /* height: ${props => (props.sizeUp ? "100%" : "0vh")}; */
+  /* display: ${props => (props.sizeUp ? "none" : "block")}; */
+  top: ${props => (props.sizeUp ? "0vh" : "100vh")};
+  transition: top 0.5s linear;
+  /* background-image: url("https://resources.tidal.com/images/7d7e4ce5/76c1/4e28/a49c/2bbf59b725ee/320x320.jpg");
+  background-size: cover; */
+  /* backdrop-filter: blur(25px) brightness(25%); */
+  /* transform: scale(1.1); */
 `;
 const BackgroundCover = styled.img`
   width: 100vw;
   height: 100%;
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: -2;
   background-size: cover;
   filter: blur(25px) brightness(25%);

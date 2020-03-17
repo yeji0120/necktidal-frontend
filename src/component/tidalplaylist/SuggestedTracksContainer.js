@@ -76,7 +76,6 @@ const SuggestedLeft = styled.div`
 `;
 const SuggestedAlbumImg = styled.img`
   width: 42px;
-  height: 42px;
   margin-right: 20px;
 `;
 const SuggestedInfoBox = styled.div`
@@ -97,14 +96,12 @@ const SuggestedIcon = styled.div`
 `;
 const ShowOptions = styled.div`
   width: 24px;
-  height: 24px;
   margin-left: 15px;
   color: white;
   opacity: 0.5;
 `;
 const QueueAddBtn = styled.div`
   width: 24px;
-  height: 24px;
   margin-left: 10px;
   color: white;
   opacity: 0.5;
