@@ -30,7 +30,7 @@ background-color: rgb(36, 37, 40);
 
 const Wrapper = styled.div`
 margin: 15px 0 0;
-height: 140px;
+padding-bottom: 5px;
 background-color: ${tidalBlack};
 `
 const Container = styled.div`

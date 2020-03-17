@@ -1,10 +1,9 @@
 import React from 'react'
 import Featured from 'component/tidalhome/content/Featured'
-import RecentlyPlayedTrack from 'component/tidalhome/content/RecentlyPlayedTrack'
+import RecentlyPlayed from 'component/tidalhome/content/RecentlyPlayed'
 import NewTrack from 'component/tidalhome/content/NewTrack'
 import NewAlbum from 'component/tidalhome/content/NewAlbum'
 import PoplularPlaylists from 'component/tidalhome/content/PopularPlaylists'
-import WomenHistory from 'component/tidalhome/content/WomenHistory'
 import styled, { css } from 'styled-components'
 
 const Content = () => {
@@ -12,11 +11,10 @@ const Content = () => {
         <>
         <Wrapper>
             <Featured/>
-            <RecentlyPlayedTrack />
+            <RecentlyPlayed />
             <NewTrack />
             <NewAlbum />
             <PoplularPlaylists />
-            <WomenHistory />
         </Wrapper>
             
         </>

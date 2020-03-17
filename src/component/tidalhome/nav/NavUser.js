@@ -45,7 +45,6 @@ background-color: rgb(36, 37, 40);
 
 const Wrapper = styled.div`
 box-sizing: border-box;
-height: 60px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -62,7 +61,7 @@ const Container = styled.div`
 position: relative;
 margin-top: 10px;
 width: 216px;
-height: 44.09px;
+padding: 10px 0;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -96,7 +95,6 @@ text-transform: uppercase;
 const MoreIcon = styled.div`
 margin-right: 12px;
 width: 24px;
-height: 24px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -119,7 +117,8 @@ font-size: 14px;
 font-weight: 500;
 `;
 const MoreItem = styled.div`
-height: 30px;
+padding: 10px 0;
+/* height: 30px; */
 display: flex;
 align-items: center;
 &:hover{

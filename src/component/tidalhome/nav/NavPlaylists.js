@@ -116,7 +116,6 @@ margin-left: 14px;
 const Container = styled.div`
 margin-top: 10px;
 box-sizing: border-box;
-height: 44.09px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -124,7 +123,7 @@ justify-content: center;
 const HoverBox = styled.div`
 margin-top: 10px;
 width: 216px;
-height: 44.09px;
+padding: 13px 0;
 border-radius: 8px;
 display: flex;
 align-items: center;

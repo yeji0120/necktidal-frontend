@@ -1,17 +1,17 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const NewTrackBox = () => {
+const NewTrackBox = (props) => {
     return (
         <>
         <Wrapper>
             <ImgContainer>
-                <IMG src="https://resources.tidal.com/images/78fbd933/ad59/4802/866e/adc4504a8076/480x480.jpg" alt=""/>
+                <IMG src={props.thumbnail} alt=""/>
             </ImgContainer>
-            <Title>King and Queens</Title>
-            <Artist>i'm the singer</Artist>
-            <Album>i dont know name</Album>
-            <Time>3:30</Time>
+            <Title>{props.title}</Title>
+            <Artist>{props.artist}</Artist>
+            <Album>{props.album}</Album>
+            <Time>{props.time}</Time>
             <Icons>
                 <Btn>
                     <MoreIcon>

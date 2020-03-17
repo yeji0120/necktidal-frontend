@@ -29,7 +29,8 @@ cursor: pointer;
 `;
 const ImgWrapper = styled.div`
 width: 320px;
-height: 232px;
+height: 250px;
+padding-bottom: 25px;
 overflow: hidden;
 display: flex;
 justify-content: center;

@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components'
 
 const NewAlbum = () => {
     const [data,setData] = useState([]);
+    const [isClicked,setIsClicked] = useState(0);
+
 
     // function fetchData() {
     //     const res = await fetch("http://10.58.2.53:8000/music/album", {
@@ -19,14 +21,34 @@ const NewAlbum = () => {
 
 
     useEffect(()=>{
-        fetch("http://10.58.2.53:8000/music/album?limit=20",
+        // fetch("http://10.58.3.46:8001/music/album/new?limit=10",
+        fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })
         .then(res => res.json())
         // .then(res => console.log(res))
-        .then(res => setData(res.new_albums))
+        .then(res => setData(res.albums))
 
     }, [])
+
+    const moveRight = () => {
+        console.log('setIsClicked', setIsClicked);
+        if(isClicked<=-800) {
+          return;
+        } else {
+          setIsClicked(isClicked - 300)
+        }
+      }
+    
+      const moveLeft = () => {
+        if(isClicked===0) {
+          return;
+        } else {
+        setIsClicked(isClicked + 300)
+      }
+    }
+
+
     return (
         <>
         <Wrapper>
@@ -35,17 +57,29 @@ const NewAlbum = () => {
                     <ViewAll>View all</ViewAll>
             </Header>
             <ListContainer>
+            <LeftBtn>
+                <LeftSvg onClick={()=>moveLeft()}>
+                    <Path d="M 28.8989 24 L 19.1161 14.2172 L 20.8839 12.4494 L 32.4344 24 L 20.8839 35.5505 L 19.1161 33.7827 L 28.8989 24 Z" />
+                    </LeftSvg>
+                </LeftBtn>
+                <RightBtn>
+                    <RightSvg onClick={()=>moveRight()}>
+                        <Path d="M 28.8989 24 L 19.1161 14.2172 L 20.8839 12.4494 L 32.4344 24 L 20.8839 35.5505 L 19.1161 33.7827 L 28.8989 24 Z" />
+                    </RightSvg>
+                </RightBtn>
                 <ItemContainer>
+                    <DIV isMoved={isClicked}>
                     {data.map(item => {
                         return (
                             <NewAlbumBox 
                             id={item.id}
                             title={item.album}
-                            subtitle={item.artist}
+                            subtitle={item.artist[0].name}
                             thumbnail={item.thumbnail_url}
                             />
                         )
                     })}   
+                    </DIV>
                 </ItemContainer>
             </ListContainer>
         </Wrapper>
@@ -55,7 +89,7 @@ const NewAlbum = () => {
 
 const Wrapper = styled.div`
 width: 100%;
-height: 300px;
+height: 350px;
 padding-top: 10px;
 padding-bottom: 30px;
 background-color: black;
@@ -87,14 +121,55 @@ cursor: pointer;
 const ListContainer = styled.div`
 height:280px;
 overflow: hidden;
-/* position: relative; */
+position: relative;
 `;
+const LeftBtn = styled.div`
+position: absolute;
+width: 40px;
+height: 170px;
+top: 0;
+left: 0;
+z-index: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+const LeftSvg = styled.svg`
+height: 40px;
+transform: rotate(180deg);
+fill: white;
+cursor: pointer;
+display: block;
+`;
+const RightBtn = styled.div`
+position: absolute;
+width: 40px;
+height: 170px;
+top: 0;
+right: 0;
+z-index: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+const RightSvg = styled.svg`
+fill:white;
+height:40px;
+cursor: pointer;
+`;
+const Path = styled.path``;
 const ItemContainer = styled.div`
 height: 280px;
 margin-left: 30px;
-display: flex;
 `;
-
+const DIV = styled.div`
+position:absolute;
+transform: translateX(${props=> props.isMoved}px);
+transition: 1s;
+display: flex;
+height: 280px;
+margin-left: 30px;
+`;
 
 export default NewAlbum
 
