@@ -1,0 +1,142 @@
+{
+  "albums": [
+    {
+      "id": 28,
+      "album": "Suga",
+      "artist": [
+        {
+          "id": 13,
+          "name": "Leo Kalyan"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/7e186a1b/cb54/4901/9282/b1753f7d73f9/320x320.jpg"
+    },
+    {
+      "id": 27,
+      "album": "Suga",
+      "artist": [
+        {
+          "id": 85,
+          "name": "Megan Thee Stallion"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/290b0808/d27a/4261/bf85/0b798325c3fb/320x320.jpg"
+    },
+    {
+      "id": 26,
+      "album": "The World Is Yours",
+      "artist": [
+        {
+          "id": 68,
+          "name": "Clarence Carter"
+        },
+        {
+          "id": 1,
+          "name": "Future"
+        },
+        {
+          "id": 3,
+          "name": "Young Greatness"
+        },
+        {
+          "id": 7,
+          "name": "Vice"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/95fd8de9/e1a3/49cc/b7f9/6b9c203351dd/320x320.jpg"
+    },
+    {
+      "id": 25,
+      "album": "Die A Legend",
+      "artist": [
+        {
+          "id": 58,
+          "name": "Eleanor Friedberger"
+        },
+        {
+          "id": 68,
+          "name": "Clarence Carter"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/23a361f8/0055/4fd7/b5d6/bded6adee6ff/320x320.jpg"
+    },
+    {
+      "id": 24,
+      "album": "True 2 Myself",
+      "artist": [
+        {
+          "id": 8,
+          "name": "Frank Ocean"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/5ddb2130/f3cc/4c4f/aed5/c3e2295dcfba/320x320.jpg"
+    },
+    {
+      "id": 23,
+      "album": "MUDBOY",
+      "artist": [
+        {
+          "id": 17,
+          "name": "Djustin"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/68830767/b69a/47cc/853c/0641b08f9ade/320x320.jpg"
+    },
+    {
+      "id": 22,
+      "album": "Drip Harder",
+      "artist": [
+        {
+          "id": 72,
+          "name": "Patti LaBelle"
+        },
+        {
+          "id": 11,
+          "name": "Neon Dreams"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/f26a80f8/bbc8/423b/be22/60fbbf563a25/320x320.jpg"
+    },
+    {
+      "id": 21,
+      "album": "Melly vs. Melvin",
+      "artist": [
+        {
+          "id": 72,
+          "name": "Patti LaBelle"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/ce7e3186/226f/49db/a57f/2725b66be189/320x320.jpg"
+    },
+    {
+      "id": 20,
+      "album": "NOT ALL HEROES WEAR CAPES",
+      "artist": [
+        {
+          "id": 42,
+          "name": "Mystery Skulls"
+        },
+        {
+          "id": 33,
+          "name": "Bear In Heaven"
+        },
+        {
+          "id": 75,
+          "name": "Gary U.S. Bonds"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/02a7c700/ac33/4cc1/add8/8ad64105afb2/320x320.jpg"
+    },
+    {
+      "id": 19,
+      "album": "i am > i was",
+      "artist": [
+        {
+          "id": 42,
+          "name": "Mystery Skulls"
+        }
+      ],
+      "thumbnail_url": "https://resources.tidal.com/images/3bf1a566/235d/49de/a1bf/b409b44b259f/320x320.jpg"
+    }
+  ]
+}

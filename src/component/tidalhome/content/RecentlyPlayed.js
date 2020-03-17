@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react'
 import NewAlbumBox from 'component/tidalhome/content/NewAlbumBox'
 import styled, { css } from 'styled-components'
 
-const PopularPlaylists = () => {
+const RecentlyPlayed = () => {
     const [data,setData] = useState([]);
     const [isClicked,setIsClicked] = useState(0);
-
-    useEffect(()=>{
-        // fetch("http://10.58.3.46:8001/music/album/new?limit=10",
+    
+    useEffect( () => {
+        // fetch("http://10.58.3.46:8001/music/?",
         fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })
         .then(res => res.json())
         .then(res => setData(res.albums))
-
     }, [])
 
     const moveRight = () => {
@@ -32,13 +31,11 @@ const PopularPlaylists = () => {
         setIsClicked(isClicked + 300)
       }
     }
-
-
     return (
         <>
         <Wrapper>
             <Header>
-                <Title>My Playlists</Title>
+                <Title>Recently Played</Title>
                 <ViewAll>View all</ViewAll>
             </Header>
             <ListContainer>
@@ -49,22 +46,22 @@ const PopularPlaylists = () => {
                 </LeftBtn>
                 <RightBtn>
                     <RightSvg onClick={()=>moveRight()}>
-                            <Path d="M 28.8989 24 L 19.1161 14.2172 L 20.8839 12.4494 L 32.4344 24 L 20.8839 35.5505 L 19.1161 33.7827 L 28.8989 24 Z" />
+                        <Path d="M 28.8989 24 L 19.1161 14.2172 L 20.8839 12.4494 L 32.4344 24 L 20.8839 35.5505 L 19.1161 33.7827 L 28.8989 24 Z" />
                     </RightSvg>
                 </RightBtn>
                 <ItemContainer>
-                 <DIV isMoved={isClicked}>
-                 {data.map(item => {
+                    <DIV isMoved={isClicked}>
+                    {data.map(item => {
                         return (
-                        <NewAlbumBox 
-                        id={item.id}
-                        title={item.album}
-                        subtitle={item.artist[0].name}
-                        thumbnail={item.thumbnail_url}
-                        />
+                            <NewAlbumBox 
+                            id={item.id}
+                            title={item.album}
+                            subtitle={item.artist[0].name}
+                            thumbnail={item.thumbnail_url}
+                            />
                         )
-                    })}   
-                 </DIV>
+                    })}
+                    </DIV>
                 </ItemContainer>
             </ListContainer>
         </Wrapper>
@@ -74,7 +71,7 @@ const PopularPlaylists = () => {
 
 const Wrapper = styled.div`
 width: 100%;
-height: 370px;
+height: 350px;
 padding-top: 10px;
 padding-bottom: 30px;
 background-color: black;
@@ -144,8 +141,6 @@ cursor: pointer;
 `;
 const Path = styled.path``;
 const ItemContainer = styled.div`
-height: 280px;
-margin-left: 30px;
 `;
 const DIV = styled.div`
 position:absolute;
@@ -155,4 +150,4 @@ display: flex;
 height: 280px;
 margin-left: 30px;
 `;
-export default PopularPlaylists
+export default RecentlyPlayed
