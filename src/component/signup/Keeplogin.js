@@ -1,42 +1,27 @@
 import React, { Component } from 'react';
-import styled, { keyframes,css } from 'styled-components';
-import {FacebookCircle} from '@styled-icons/boxicons-logos/FacebookCircle';
-import {Twitter} from '@styled-icons/boxicons-logos/Twitter';
+import styled from 'styled-components';
 import Logo from 'component/images/logoimages.png';
-import Recaptcha from 'react-recaptcha';
 import { withRouter } from 'react-router-dom';
-import Facebook from 'component/Facebook';
 
-const Flogo = styled(FacebookCircle)` 
-  position:relative;
-  right:40%;
-  color: white;
-`
-const Tlogo = styled(Twitter)`
-  position:relative;
-  right:170px;
-  color: white;
-`
-const Recaptchadiv = styled.div`
-margin-top:50px;`
-
-class Signuplogin extends Component {
+class Keeplogin extends Component {
     state={
-        isVerified: false,
-        email:""
-    };
-
-    goToCreateuser(){
-        const queryId = this.state.email
-        this.props.history.push(`/createuser?keyword=${queryId}`)
+        email:"",
+        password:""
     }
-    goToLoginpassword(){
-        const queryId = this.state.email
-        this.props.history.push(`/loginpassword?keyword=${queryId}`)
+    handleSave = e => {
+        this.setState({
+            [e.target.name]: e.target.value   
+        })
+    }
+    goToCreateuser(){
+        this.props.history.push('/createuser')
+    }
+    goToCreateuser(){
+        this.props.history.push('/createuser')
     }
     
     handleClick = e => {
-        fetch('http://10.58.7.72:8000/account/ ', {
+        fetch('http://10.58.3.196:8000/account/signup/ ', {
             method: 'POST',
             headers: {
             },
@@ -46,63 +31,41 @@ class Signuplogin extends Component {
             })
           })
           .then(response => { 
-            if (response.status === 200) {
-                return this.goToCreateuser()
-            } else if (response.status === 400) {
-                return this.goToLoginpassword()
+            if (response.status === 404) {
+                alert(" no exist id");
+            } else if (response.status === 200) {
+                return response
             }
           })
           .then(response => 
             console.log(response)
           )
-         }
-    handleSave = e => {
-        this.setState({
-            [e.target.name]: e.target.value   
-        })
-    }
-    recaptchaLoaded() {
-        console.log('capcha successfully loaded');
-      }
-    verifyCallback(response) {
-        if (response) {
-            this.setState({
-            isVerified: true
-            })
-        }
-    } 
-
-    isEmail=()=> {
-	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	return regExp.test(this.state.email);
     }
 
-
+    urlQuery = ()=>{
+        const queryId = this.props.location.search.split('=')[1];
+        return queryId
+ 
+     }
     render() {
         console.log(this.state)
-        console.log(this.isEmail())
         return (
             <Maindiv>
-                <Signuporlogin>Sign Up or Log In</Signuporlogin>
+                <Signuporlogin>Login</Signuporlogin>
                 <Ddiv>
                     <Windowdiv>
                         <Userid
                         placeholder="Enter Your Email or username"
+                        value={this.urlQuery()}
                         onChange={this.handleSave}
                         name="email"></Userid>
+                        <Userpassword
+                        placeholder="Enter your password"
+                        onChange={this.handleSave}
+                        name="password"></Userpassword>
+                        
                         <Continue
-                        textlineState={this.isEmail()}
-                        onClick={this.handleClick}>Continue</Continue>
-                        <Orcontinuewith>or continue with</Orcontinuewith>
-                        <Facebookdiv><Flogo size="25"/><Facebook/></Facebookdiv>
-                        <Twittersdiv><Tlogo size="25"/>Twitter</Twittersdiv>
-                        <Recaptcha
-                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                        render="explicit"
-                        onloadCallback={this.recaptchaLoaded}
-                        verifyCallback={this.verifyCallback}
-                        />
-                        <Recaptchadiv></Recaptchadiv>
+                        onClick={this.handleClick}>Login</Continue>
                     </Windowdiv>
                 </Ddiv>
                 <Bottom>
@@ -123,6 +86,69 @@ class Signuplogin extends Component {
         )
     }
 }
+
+const Selectdiv = styled.div``
+
+const Day = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:10%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+margin-right:30px;
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+const Month = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:10%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+margin-right:30px;
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+const Year = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:25%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+
 
 const Maindiv = styled.div`
 text-align:center;
@@ -165,7 +191,45 @@ border-left:none;
 border-right:none;
 border-bottom: 1px solid #78777f;
 margin-top:20px;
-margin-bottom:30px;
+margin-bottom:5px;
+width:70%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}
+`
+const Userpassword = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:70%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}
+`
+const Userpasswordconfirm = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:15px;
+margin-bottom:px;
 width:70%;
 height:55px;
 background-color:rgba(0, 0, 0, 0);
@@ -175,6 +239,7 @@ background-color:rgba(0, 0, 0, 0);
 }
 `
 
+
 const Continue = styled.div`
 border:1px solid #78777f;
 margin-bottom:15px;
@@ -182,56 +247,11 @@ width:70%;
 height:55px;
 border-radius:5px;
 color:#78777f;
-${props => {
-    if(props.textlineState === true) {
-        return css`color:black;
-        background:white;
-        :hover{
-            cursor:pointer;
-        }`
-    }
-}}
-
-`
-/* :hover{
-    color:black;
-    background-color:white;
-    transition: all 1s;
-} */
-
-const Orcontinuewith = styled.div`
-font-size:13px;
-font-family:nationale-regular;
-margin-bottom:10px;`
-
-const Facebookdiv = styled.div`
-margin-bottom:30px;
-width:70%;
-height:55px;
-border:1px solid white;
-border-radius:5px;
+margin-top:50px;
 :hover{
-    color:black;
-    background-color:white;
-    transition: all 1s;
+    cursor:pointer;
+}
 `
-
-const Twittersdiv = styled.div`
-width:70%;
-height:55px;
-border:1px solid white;
-border-radius:5px;
-margin-bottom:80px;
-padding-left:40px;
-:hover{
-    color:black;
-    background-color:white;
-    transition: all 1s;
-`
-
-
-/* footer구간--------------------------- */
-
 const Bottom = styled.div`
 font-size:15px;
 color:#9B9B9C;
@@ -264,4 +284,4 @@ const EN = styled.div`
 margin-right:20px;`
 
 
-export default withRouter(Signuplogin)
+export default withRouter(Keeplogin);

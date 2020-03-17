@@ -21,14 +21,10 @@ class Tidalhomesecond extends Component{
         console.log(scrollTop)
         if (scrollTop > 3) {
             console.log('in')
-            this.setState({toplineOn: true})
-            this.setState({bottomlineOn: true})
-            this.setState({textlineOn: true})
+            this.setState({toplineOn: true, bottomlineOn: true, textlineOn: true})
         } else {
             console.log('out')
-            this.setState({toplineOn: false})
-            this.setState({bottomlineOn: false})
-            this.setState({textlineOn: false})
+            this.setState({toplineOn: false, bottomlineOn: false, textlineOn: false})
         }
     };
     render(){
