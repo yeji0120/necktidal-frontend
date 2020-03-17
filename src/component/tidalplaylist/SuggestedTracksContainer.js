@@ -6,11 +6,12 @@ import { PlayListAdd } from "@styled-icons/remix-fill";
 import Album from "component/tidalplaylist/Album";
 
 const SuggestedTracksContainer = () => {
-  const [data, setData] = useState([]);
-  const getData = () => {
-    fetch("http://localhost:3000/Data/PlayListData.json")
+  const [trackData, setTrackData] = useState([]);
+  const getTrackData = () => {
+    // fetch("http://10.58.3.46:8001/music/artist/84/toptrack")
+    fetch("http://localhost:3000/Data/Track.json")
       .then(res => res.json())
-      .then(res => setData(res.data));
+      .then(res => setTrackData(res.tracks));
   };
 
   // useEffect(() => {
@@ -18,20 +19,25 @@ const SuggestedTracksContainer = () => {
   // }, [state]);
 
   useEffect(() => {
-    getData();
+    getTrackData();
   }, []);
-  console.log(data);
+  console.log(trackData, "이거");
+
   return (
     <SuggestedTracks>
       <SuggestedTitle>Suggested Tracks</SuggestedTitle>
-      {data.map((el, index) => {
+      {trackData.map((el, index) => {
         return (
           <SuggestedAlbum key={index}>
             <SuggestedLeft>
-              <Album size="42" src={el.image} alt="suggested-album-img" />
+              <Album
+                size="42"
+                src={el.album_info[0].thumbnail_url}
+                alt="suggested-album-img"
+              />
               <SuggestedInfoBox>
-                <InfoTitle>{el.title}</InfoTitle>
-                <InfoSinger>{el.artist}</InfoSinger>
+                <InfoTitle>{el.album_info[0].name}</InfoTitle>
+                <InfoSinger>{el.artist_info[0].name}</InfoSinger>
               </SuggestedInfoBox>
             </SuggestedLeft>
             <SuggestedRight>

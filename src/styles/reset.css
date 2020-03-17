@@ -77,28 +77,21 @@ video {
   font-weight: normal;
   letter-spacing: 1px;
 }
-​* {
+* {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
   color: inherit;
 }
-​*:focus {
+*:focus {
   outline: none;
   border: none;
 }
-
-/* body {
+body {
   margin: 0;
-<<<<<<< HEAD
-  font-family: "nationale-regular", "nationale-demibold", "nationale-bold";
-} */
-=======
   font-family: nationale-regular;
 }
->>>>>>> b5dd15a... 타이달 메인페이지를 완료하였읍니다. 그리고 로그인페이지, 회원가입페이지 레이아웃을 만들었읍니다.
-
-​article,
+article,
 aside,
 details,
 figcaption,
@@ -111,35 +104,33 @@ nav,
 section {
   display: block;
 }
-​nav ul {
+nav ul {
   list-style: none;
 }
-​blockquote,
+blockquote,
 q {
   quotes: none;
 }
-​blockquote:before,
+blockquote:before,
 blockquote:after,
 q:before,
 q:after {
   content: "";
   content: none;
 }
-​a {
+a {
   margin: 0;
   padding: 0;
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
 }
-​
 /* change colours to suit your needs */
 ins {
   background-color: #ff9;
   color: #000;
   text-decoration: none;
 }
-​
 /* change colours to suit your needs */
 mark {
   background-color: #ff9;
@@ -147,19 +138,18 @@ mark {
   font-style: italic;
   font-weight: bold;
 }
-​del {
+del {
   text-decoration: line-through;
 }
-​abbr[title],
+abbr[title],
 dfn[title] {
   border-bottom: 1px dotted;
   cursor: help;
 }
-​table {
+table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-​
 /* change border colour to suit your needs */
 hr {
   display: block;
@@ -169,22 +159,22 @@ hr {
   margin: 1em 0;
   padding: 0;
 }
-​input,
+input,
 select {
   vertical-align: middle;
 }
-​textarea {
+textarea {
   resize: none;
 }
-/* @font-face {
+@font-face {
   font-family: "nationale-regular";
-  src:
-    url("../fonts/nationale-regular.woff2") format("woff2");
+  src: url("../fonts/nationale-regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "nationale-demibold";
-  src:
-    url("../fonts/nationale-demibold.woff2") format("woff2");
+  src: url("../fonts/nationale-demibold.woff2") format("woff2");
 }
 @font-face {
   font-family: "nationale-bold";
+  src: url("../fonts/nationale-bold.woff2") format("woff2");
+}
