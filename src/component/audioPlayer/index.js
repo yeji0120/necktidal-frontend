@@ -699,7 +699,7 @@ function AudioPlayer(props) {
   return (
     <MediaContextProvider>
       <div>
-        <AudioTag url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" />
+        <AudioTag url="http://10.58.3.46:8001/music/text?track_id=2" />
         {/*  <AudioTag url={props로 받은 url주소를 여기에 넣는다 ex/props.url} /> */}
       </div>
 

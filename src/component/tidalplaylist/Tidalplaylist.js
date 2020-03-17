@@ -47,9 +47,11 @@ const Tidalplaylist = props => {
 //   height: 100vh;
 // }
 // `;
+
 const PlaylistMainContainer = styled.div`
   position: relative;
   overflow-x: hidden;
+  overflow-y: scroll;
 `;
 const BackgroundCover = styled.img`
   width: 100vw;
