@@ -21,7 +21,6 @@ const Container = styled.div`
 `;
 const VolumeIcon = styled.div`
   width: 30px;
-  height: 30px;
   color: white;
 `;
 const VolumeBar = styled.div`

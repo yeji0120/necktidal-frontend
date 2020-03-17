@@ -8,6 +8,7 @@ import { OrderPlay } from "@styled-icons/remix-fill";
 
 const PlaylistHeaderContainer = () => {
   const [inputFocus, setInputFocus] = useState(false);
+
   return (
     <PlaylistHeader>
       <FlexBox>
@@ -40,7 +41,6 @@ const PlaylistHeaderContainer = () => {
 const PlaylistHeader = styled.div`
   width: 100vw;
   height: 84px;
-  position: fixed;
   display: flex;
   z-index: 3;
   justify-content: space-between;
@@ -53,19 +53,16 @@ const FlexBox = styled.div`
 `;
 const NecktidalLogo = styled.img`
   width: 66px;
-  height: 30px;
   margin-left: 20px;
 `;
 const ResizeBtn = styled.div`
   width: 17px;
-  height: 17px;
   padding-left: 30px;
   box-sizing: border-box;
   color: white;
 `;
 const Alt = styled(CompressAlt)`
   width: 17px;
-  height: 17px;
 `;
 const ResizeText = styled.div`
   margin-left: 25px;
@@ -81,7 +78,6 @@ const SearchBox = styled.div`
 
 const SearchIcon = styled.div`
   width: 22px;
-  height: 22px;
   padding-left: 7px;
   color: white;
 `;
@@ -118,13 +114,11 @@ const SearchInnerBox = styled.div`
 `;
 const QueueBtn = styled.div`
   width: 24px;
-  height: 24px;
   padding-right: 30px;
   color: white;
 `;
 const OrderList = styled(OrderPlay)`
   width: 24px;
-  height: 24px;
   margin-left: 20px;
   margin-right: 20px;
 `;

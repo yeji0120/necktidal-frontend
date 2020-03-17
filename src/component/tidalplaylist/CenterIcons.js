@@ -34,30 +34,25 @@ const Container = styled.div`
 `;
 const ShuffleIcon = styled.div`
   width: 25px;
-  height: 25px;
   color: white;
   opacity: 0.5;
 `;
 const PreviousIcon = styled.div`
   width: 70px;
-  height: 70px;
   margin-left: 10px;
   color: white;
 `;
 const PlayIcon = styled.div`
   width: 80px;
-  height: 80px;
   color: white;
 `;
 const NextIcon = styled.div`
   width: 70px;
-  height: 70px;
   margin-right: 10px;
   color: white;
 `;
 const RepeatIcon = styled.div`
   width: 25px;
-  height: 25px;
   color: white;
   opacity: 0.5;
 `;

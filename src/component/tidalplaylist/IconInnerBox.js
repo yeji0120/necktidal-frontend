@@ -25,14 +25,12 @@ const IconBox = styled.div`
 `;
 const ShowOptions = styled.div`
   width: 24px;
-  height: 24px;
   margin-left: 15px;
   color: white;
   opacity: 0.5;
 `;
 const LikeBtn = styled.div`
   width: 22px;
-  height: 22px;
   margin-left: 15px;
   color: white;
 `;
