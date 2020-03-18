@@ -1,12 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled, { css } from 'styled-components'
+import Modal from 'react-modal'
+import { BackgroundColor } from 'styled-icons/foundation';
+Modal.setAppElement('#root')
 
 const NavPlaylists = () => {
     const [isClicked,setIsClicked] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const AddClick = () => {
         setIsClicked(!isClicked);
     }
+
+    const [title, setTitle] = useState('');
+    const [ desc, setDesc] = useState('');
+    useEffect(()=>{
+        console.log({
+            title,
+            desc
+        });
+    });
+
+    const onChangeTitle = e =>{
+        setTitle(e.target.value)
+    }
+    const onChangeDesc = e =>{
+        setDesc(e.target.value)
+    }
+
     return (
         <>
          <Wrapper>
@@ -29,18 +50,130 @@ const NavPlaylists = () => {
                     </MoreContainer>
              </MyPlaylist>
              <Container>
-                 <HoverBox>
+                 <HoverBox
+                 onClick={()=> setModalIsOpen(true)}>
                     <AddIcon>
                         <Path d="M 17 11.3 L 12.8 11.3 L 12.8 7 L 11.3 7 L 11.3 11.3 L 7 11.3 L 7 12.8 L 11.3 12.8 L 11.3 17 L 12.8 17 L 12.8 12.8 L 17 12.8 L 17 11.3 Z"/>
                     </AddIcon>
-                    <Text>Create new playlist</Text>
+                    <Text >Create new playlist</Text>
                  </HoverBox>
              </Container>
-
+             <Modal isOpen={modalIsOpen} onRequestClose={()=> setModalIsOpen(false)}
+             style={
+                 {
+                     overlay: {
+                        backgroundColor:'rgba(0, 0, 0, 0.8)',
+                     },
+                     content:{
+                         border:'none',
+                         backgroundColor:'#232428',
+                         overflow: 'hidden',
+                         fontSize:'100px',
+                         position: 'absolute',
+                         width:'500px',
+                         height:'350px',
+                         position:'absolute',
+                         marginTop:'300px',
+                         left:'40%',
+                         fontSize:'18px',
+                         fontFamily:'nationale-regular'
+                         
+                     }
+                 }
+             }
+             >
+                 <Titlediv>
+                 <Htag>Create new playlist</Htag>
+                 <Htagbutton
+                 onClick={()=> setModalIsOpen(false)}>X</Htagbutton>
+                 </Titlediv>
+                 <Ptag1>Title</Ptag1>
+                 <Ptaginput1
+                 value={title}
+                 onChange={onChangeTitle}
+                 placeholder='Please give your playlist a title'></Ptaginput1>
+                 <Ptag2>Write a description</Ptag2>
+                 <Ptaginput2
+                 value={desc}
+                 onChange={onChangeDesc}></Ptaginput2>
+                 <CreateNew>Create New</CreateNew>
+             </Modal>
          </Wrapper>
         </>
     )
+};
+
+const CreateNew = styled.button`
+color:cyan;
+font-size:19px;
+background-color:#393B3E;
+border:none;
+border-radius:10px;
+font-family:nationale-regular;
+height:50px;
+width:150px;
+margin-left:310px;
+margin-top:30px;
+:hover{
+    cursor:pointer;
 }
+
+`
+
+const Titlediv = styled.div`
+display:flex;
+justify-content:space-between;
+`
+const Htagbutton = styled.div`
+color:#989EA8;
+:hover{
+    cursor:pointer;
+}
+`
+
+const Htag = styled.div`
+color:white;
+margin-bottom:20px;`
+
+const Ptag1 =styled.div`
+color:#989EA8;
+margin-bottom:10px;`
+const Ptag2 =styled.div`
+color:#989EA8;
+margin-bottom:30px;`
+
+
+const Ptaginput1 = styled.input`
+line-height:40px;
+font-size:16px;
+background-color:rgba(0, 0, 0, 0);
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #393B3E;
+margin-bottom:20px;
+width:100%;
+color:white;
+:focus{
+    border-bottom:1px solid cyan;
+}`
+
+const Ptaginput2 = styled.input`
+font-size:16px;
+background-color:rgba(0, 0, 0, 0);
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #393B3E;
+width:100%;
+color:white;
+:focus{
+    border-bottom:1px solid cyan;
+}`
+
+
+
+
 
 const Wrapper = styled.div`
 margin: 25px 0 0;
