@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import FacebookLoginBtn from 'react-facebook-login';
-import 'component/Facebook.css'
+import 'component/Facebook.css';
+import { withRouter } from 'react-router-dom';
 
-export default class LoginFacebook extends Component {
+class LoginFacebook extends Component {
     state = {
         auth: false,
         name: '',
@@ -12,30 +13,34 @@ export default class LoginFacebook extends Component {
     //kim
     responseFacebook = response => {
         console.log(response);
-        if(response.status !== 'unknown'){
-            console.log(response);
-        fetch('http://10.58.7.72:8000/account/social_signin', {
+       
+         
+              console.log(response)
+        fetch('http://10.58.3.82:8000/account/social_signin', {
             method: 'POST',
             headers: {'Authorization':response.accessToken
-            },
-            body: JSON.stringify({
-            })
+            }
           })
-          .then(response => { 
-            console.log(response)
-          })
-          .then(response => 
-            console.log(response)
-          )
-         }
-        console.log(response.accessToken);
+          .then(res => res.json())
+        
+          .then(res => {
+         
+            if (res.user_info.access_token) {
+              this.props.history.push("/home");
+              localStorage.setItem("token", res.access_token);
+            } else {
+             alert("실패");
+            }
+          });
+         
+       
         this.setState({
             auth: true,
             name: response.name,
             picture: response.picture.data.url,
             email: response.email
         });
-        
+    
     }
     componentClicked = () => {
         console.log('Facebook btn clicked');
@@ -86,7 +91,7 @@ export default class LoginFacebook extends Component {
         );
     }
 }
-
+export default withRouter(LoginFacebook)
 
 
 {/* <FacebookLoginBtn
