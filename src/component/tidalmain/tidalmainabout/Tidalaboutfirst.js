@@ -39,7 +39,7 @@ const fadeoutphone = keyframes`
 `;
 const Aboutfirstdiv  = styled.div`
     position:relative;
-    height:820px;
+    height:1020px;
     display:flex;
     justify-content:center;
     align-items:center;

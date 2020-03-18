@@ -9,10 +9,26 @@ export default class LoginFacebook extends Component {
         picture: '',
         email:''
     }
-
+    //kim
     responseFacebook = response => {
         console.log(response);
-        if(response.status !== 'unknown')
+        if(response.status !== 'unknown'){
+            console.log(response);
+        fetch('http://10.58.7.72:8000/account/social_signin', {
+            method: 'POST',
+            headers: {'Authorization':response.accessToken
+            },
+            body: JSON.stringify({
+            })
+          })
+          .then(response => { 
+            console.log(response)
+          })
+          .then(response => 
+            console.log(response)
+          )
+         }
+        console.log(response.accessToken);
         this.setState({
             auth: true,
             name: response.name,
@@ -23,7 +39,19 @@ export default class LoginFacebook extends Component {
     }
     componentClicked = () => {
         console.log('Facebook btn clicked');
+        // fetch('http://10.58.7.72:8000/account/social_signin ', {
+        //     method: 'POST',
+        //     headers: {
+        //     }
+        //   })
+        //   .then(response => { 
+        //       console.log(response)
+        //   })
+        //   .then(response => 
+        //     console.log(response)
+        //   )
     }
+    
     render(){
         let facebookData;
         
@@ -44,8 +72,8 @@ export default class LoginFacebook extends Component {
             ) : 
             facebookData = (
             <FacebookLoginBtn className="Login"
-                appId="804938803327633"
-                autoLoad={true}
+                appId="2683784795077556"
+                autoLoad={false}
                 fields="name,email,picture"
                 onClick={this.componentClicked}
                 callback={this.responseFacebook} />

@@ -87,11 +87,15 @@ video {
   outline: none;
   border: none;
 }
+
 body {
   margin: 0;
   font-family: nationale-regular;
 }
-article,
+
+
+
+​article,
 aside,
 details,
 figcaption,
@@ -176,5 +180,11 @@ textarea {
 }
 @font-face {
   font-family: "nationale-bold";
+<<<<<<< HEAD
   src: url("../fonts/nationale-bold.woff2") format("woff2");
 }
+=======
+  src:
+    url("../fonts/nationale-bold.woff2") format("woff2");
+}
+>>>>>>> 8268b71... wip

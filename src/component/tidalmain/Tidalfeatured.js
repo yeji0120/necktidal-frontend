@@ -11,6 +11,7 @@ import Tidalfeaturedspecial1 from 'component/tidalmain/tidalmainfeatured/Tidalfe
 import Tidalmainfooter from 'component/tidalmain/Tidalmainfooter'
 
 
+
 class Tidalfeatured extends Component {
   render() {
     return (

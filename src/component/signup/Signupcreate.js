@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import {FacebookCircle} from '@styled-icons/boxicons-logos/FacebookCircle';
 import {Twitter} from '@styled-icons/boxicons-logos/Twitter';
 import Logo from 'component/images/logoimages.png';
 import Facebook from 'component/Facebook';
+import styled, { keyframes,css } from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 const Flogo = styled(FacebookCircle)` 
   position:relative;
@@ -17,24 +18,104 @@ const Tlogo = styled(Twitter)`
 `
 class Signupcreate extends Component {
     state={
-        isVerified: false
-    };
+        email:"",
+        password:"",
+        confirm:"",
+        disabled:"",
+        abled:"",
+        oh:false
+    }
+    handleSave = e => {
+        this.setState({
+            [e.target.name]: e.target.value   
+        })
+    }
+    handleClick = e => {
+        fetch('http://10.58.3.196:8000/account/signup/ ', {
+            method: 'POST',
+            headers: {
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+            })
+          })
+          .then(response => { 
+            if (response.status === 404) {
+                alert(" no exist id");
+            } else if (response.status === 200) {
+                return response
+            }
+          })
+          .then(response => 
+            console.log(response)
+          )
+    }
+    // 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+    isPassword=()=> {
+        let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        return regex.test(this.state.password);
+    }
+    isPasswordconfirm=()=> {
+        let regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        if(regex.test(this.state.password) === true){
+            return this.isEqual()
+        }
+        }
+    isEqual=()=>{
+        if(this.state.password === this.state.confirm && this.state.oh)
+            return true
+    }
+    urlQuery = ()=>{
+       const queryId = this.props.location.search.split('=')[1];
+       return queryId
+
+    }
+    checkbox = () => {
+        this.setState({
+            oh:!this.state.oh
+        })
+    }
     render() {
+        console.log(this.state)
         return (
             <Maindiv>
                 <Signuporlogin>Create your account</Signuporlogin>
                 <Ddiv>
                     <Windowdiv>
                         <Userid
-                        placeholder="Enter Your Email or username"></Userid>
+                        placeholder="Enter Your Email or username"
+                        value={this.urlQuery()}
+                        onChange={this.handleSave}
+                        name="email"></Userid>
                         <Userpassword
-                        placeholder="Create your password"></Userpassword>
+                        placeholder="Create your password"
+                        onChange={this.handleSave}
+                        name="password"></Userpassword>
                         <Userpasswordconfirm
-                        placeholder="Confirm your password"></Userpasswordconfirm>
-                        <Continue>Continue</Continue>
-                        <Orcontinuewith>or continue with</Orcontinuewith>
-                        <Facebookdiv><Facebook/></Facebookdiv>
-                        <Twittersdiv><Tlogo size="25"/>Twitter</Twittersdiv>
+                        
+                        placeholder="Confirm your password"
+                        onChange={this.handleSave}
+                        name="confirm"></Userpasswordconfirm>
+                        <Selectdiv>
+                            <Day
+                            placeholder="Day"></Day>
+                            <Month
+                            placeholder="Month"></Month>
+                            <Year
+                            placeholder="Year"></Year>
+                        </Selectdiv>
+                        <Label>
+                        <Input type="checkbox"
+                        onClick={this.checkbox}/>
+                        Stay up to date with exclusive content, new product & services, the latest information, and ticket giveaways from TIDAL.
+                        </Label>
+                        <Descdiv>By selecting “Sign Up” you confirm that you have read</Descdiv>
+                        <Descdiv1>and agree to TIDAL's Terms of Use and Privacy policy .</Descdiv1>
+                        <Continue
+                        textlineState={this.isPasswordconfirm()}
+                        onClick={this.handleClick}
+                        >Sign Up</Continue>
                     </Windowdiv>
                 </Ddiv>
                 <Bottom>
@@ -55,42 +136,91 @@ class Signupcreate extends Component {
         )
     }
 }
+const Descdiv = styled.div`
+margin-top:15px;
+font-size:13px;
+font-family:nationale-regular;
+line-height:28px;`
+
+const Descdiv1 = styled.div`
+font-size:13px;
+font-family:nationale-regular;
+line-height:28px;`
 
 
 
-// const Signuplogin = () => {
-//     return(
-//         <Maindiv>
-//                 <Signuporlogin>Sign Up or Log In</Signuporlogin>
-//                 <Ddiv>
-//                     <Windowdiv>
-//                         <Userid
-//                         placeholder="Enter Your Email or username"></Userid>
-//                         <Continue>Continue</Continue>
-//                         <Orcontinuewith>or continue with</Orcontinuewith>
-//                         <Facebook><Flogo size="25"/>Facebook</Facebook>
-//                         <Twitters><Tlogo size="25"/>Twitter</Twitters>
-                    
-//                     </Windowdiv>
-//                 </Ddiv>
-//                 <Bottom>
-//                     <Bottomleft>
-//                         <Tidallogo
-//                         src={Logo}></Tidallogo>
-//                         <Aspiro>© 2020 Aspiro AB</Aspiro>
-//                     </Bottomleft>
-//                     <Bottomright>
-//                         <Privacypolicy>Privacy policy</Privacypolicy>
-//                         <TermsandConditions>Terms and Conditions</TermsandConditions>
-//                         <Contact>Contact</Contact>
-//                         <EN>EN</EN>
-//                     </Bottomright>
-                    
-//                 </Bottom>
+const Label = styled.label`
+margin-top:30px;
+width:73%;
+font-family:nationale-regular;
+line-height:28px;
+font-size:13px;
+`
 
-//         </Maindiv>
-//     )
-// }
+const Input = styled.input``
+
+const Selectdiv = styled.div``
+
+const Day = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:10%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+margin-right:30px;
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+const Month = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:10%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+margin-right:30px;
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+const Year = styled.input`
+color:white;
+line-height:5px;
+font-family:nationale-regular;
+font-size:18px;
+border-top:none;
+border-left:none;
+border-right:none;
+border-bottom: 1px solid #78777f;
+margin-top:20px;
+margin-bottom:5px;
+width:25%;
+height:55px;
+background-color:rgba(0, 0, 0, 0);
+:focus{
+    outline:none;
+    border-bottom:2px solid cyan;
+}`
+
+
 
 const Maindiv = styled.div`
 text-align:center;
@@ -171,7 +301,7 @@ border-left:none;
 border-right:none;
 border-bottom: 1px solid #78777f;
 margin-top:15px;
-margin-bottom:30px;
+margin-bottom:px;
 width:70%;
 height:55px;
 background-color:rgba(0, 0, 0, 0);
@@ -179,6 +309,15 @@ background-color:rgba(0, 0, 0, 0);
     outline:none;
     border-bottom:2px solid cyan;
 }
+${props => {
+    if(props.textlineState === true) {
+        return css`color:black;
+        background:white;
+        :hover{
+            cursor:pointer;
+        }`
+    }
+}}
 `
 
 
@@ -189,43 +328,20 @@ width:70%;
 height:55px;
 border-radius:5px;
 color:#78777f;
+margin-top:50px;
 :hover{
     cursor:not-allowed;
 }
+${props => {
+    if(props.textlineState === true) {
+        return css`color:black;
+        background:white;
+        :hover{
+            cursor:pointer;
+        }`
+    }
+}}
 `
-/* :hover{
-    color:black;
-    background-color:white;
-    transition: all 1s;
-} */
-
-const Orcontinuewith = styled.div`
-font-size:13px;
-font-family:nationale-regular;
-margin-bottom:10px;`
-
-const Facebookdiv = styled.div`
-margin-bottom:30px;
-width:70%;
-height:55px;
-border:1px solid white;
-border-radius:5px;
-`
-
-const Twittersdiv = styled.div`
-width:70%;
-height:55px;
-border:1px solid white;
-border-radius:5px;
-margin-bottom:80px;
-:hover{
-    color:black;
-    background-color:white;
-    transition: all 1s;
-`
-
-
-
 
 
 
@@ -264,4 +380,7 @@ const EN = styled.div`
 margin-right:20px;`
 
 
-export default Signupcreate;
+export default withRouter(Signupcreate);
+
+
+

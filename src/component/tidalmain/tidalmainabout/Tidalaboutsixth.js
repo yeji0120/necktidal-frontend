@@ -18,7 +18,7 @@ class Tidalaboutsixth extends Component {
     handleScroll = e => {
         const scrollTop = ("scroll", e.srcElement.scrollingElement.scrollTop);
         console.log(scrollTop)
-        if (scrollTop > 3075) {
+        if (scrollTop > 3205) {
             console.log('in')
             this.setState({rightlineOn: true})
             this.setState({leftlineOn: true})
@@ -85,7 +85,7 @@ const Image = styled.img`
     ${props => {
         if(props.leftlineState){
             return css`animation-name: ${fadeoutphone},${fadeinphone};
-            animation-duration: 2s;
+            animation-duration: 4s;
             animation-iteration-count:linear infinite;`}}};
 `
 const Text = styled.div`

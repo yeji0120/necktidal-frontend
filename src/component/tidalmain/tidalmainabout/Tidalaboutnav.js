@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from 'component/images/mainlogo.png'
+import { useHistory } from "react-router-dom";
 
 
-function Tidalaboutnav() {
+const Tidalaboutnav=()=> {
+  let history = useHistory();
   return (
     <TidalNav>
-      <Tidallogo src={Logo} alt="logo"></Tidallogo>
+      <Tidallogo onClick={()=>history.push("/")} src={Logo} alt="logo"></Tidallogo>
       <Navcollect>
-        <Navhome>Home</Navhome>
-        <Navfeatured>Featured</Navfeatured>
-        <Navabout>About</Navabout>
+        <Navhome
+        onClick={()=>history.push("/")}>Home</Navhome>
+        <Navfeatured
+        onClick={()=>history.push("/featured")}>Featured</Navfeatured>
+        <Navabout
+        onClick={()=>history.push("/about")}>About</Navabout>
       </Navcollect>
       <Navconnect>
-        <Navlogin>Login</Navlogin>
+        <Navlogin
+        onClick={()=>history.push("/signup")}>Login</Navlogin>
         <Navtrial>Start Free Trial</Navtrial>
       </Navconnect>
       
@@ -41,6 +47,9 @@ const Tidallogo = styled.img`
   height:20px;
   right:29%;
   margin-left:30px;
+  :hover{
+  cursor:pointer;
+}
 `
 /* 홈3가지 */
 const Navcollect = styled.div`
@@ -51,16 +60,27 @@ const Navcollect = styled.div`
 
 const Navhome = styled.div`
 margin-right:37px;
+:hover{
+  cursor:pointer;
+  color:#00ffff;
+}
 
   
 `
 const Navfeatured = styled.div`
 margin-right:37px;
+:hover{
+  cursor:pointer;
+  color:#00ffff;
+}
   
 `
 const Navabout = styled.div`
   color:#00ffff;
   font-family:nationale-demibold;
+  :hover{
+  cursor:pointer;
+}
   
 `
 /* 로그인,트라이얼 */
@@ -73,6 +93,9 @@ const Navlogin = styled.div`
   position:relative;
   margin-right:10px;
   top:13px;
+  :hover{
+  cursor: pointer;
+}
 `
 const Navtrial = styled.div`
   width:185px;
