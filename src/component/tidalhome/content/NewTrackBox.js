@@ -1,10 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useHistory } from "react-router-dom";
 import styled, { css } from 'styled-components'
+import {Heart} from '@styled-icons/boxicons-solid/Heart'
+import {ControllerPlay} from '@styled-icons/entypo/ControllerPlay'
+import {Plus} from '@styled-icons/evaicons-solid/Plus'
+import {MoreHorizontalOutline} from '@styled-icons/evaicons-outline/MoreHorizontalOutline'
 
 const NewTrackBox = (props) => {
+    let history = useHistory();
+    const[isDisplayed,setIsDisplayed] = useState(false)
+    const[isHeart, setHeart] = useState(false)
+
+    const IsEntered = () => {
+        setIsDisplayed(!isDisplayed);
+    }
+    const IsLeaved = () => {
+        setIsDisplayed(!isDisplayed);
+    }
+    const IsClickedHeart = () => {
+        //fetch post, 하트 색깔 바꾸기    
+        setHeart(!isHeart);
+    }
     return (
         <>
-        <Wrapper>
+        <Wrapper onMouseOver={IsEntered} onMouseOut={IsLeaved}>
             <ImgContainer>
                 <IMG src={props.thumbnail} alt=""/>
             </ImgContainer>
@@ -13,25 +32,21 @@ const NewTrackBox = (props) => {
             <Album>{props.album}</Album>
             <Time>{props.time}</Time>
             <Icons>
-                <Btn>
-                    <MoreIcon>
-                        <Circle />
-                        <Circle />
-                        <Circle />  
-                    </MoreIcon>
-                </Btn>   
-                <Btn>
-                    <Svg>
-                        <Path d="M 18 11.3 L 12.8 11.3 L 12.8 6 L 11.3 6 L 11.3 11.3 L 6 11.3 L 6 12.8 L 11.3 12.8 L 11.3 18 L 12.8 18 L 12.8 12.8 L 18 12.8 L 18 11.3 Z" />
-                    </Svg>
-                </Btn>
-                <Btn>
-                    <Svg>
-                        <Path d="M 12 18.71 L 5.69 12.48 a 4.38 4.38 0 0 1 0 -6 a 4 4 0 0 1 6.11 0.35 l 0.2 0.26 l 0.2 -0.26 A 4.06 4.06 0 0 1 13 6 a 4.08 4.08 0 0 1 5.33 0.45 a 4.38 4.38 0 0 1 0 6 Z M 6.77 11.44 L 12 16.6 l 5.22 -5.17 a 2.86 2.86 0 0 0 0 -3.91 a 2.55 2.55 0 0 0 -3.34 -0.29 a 2.63 2.63 0 0 0 -0.49 0.52 L 12 9.57 l -1.4 -1.82 a 2.61 2.61 0 0 0 -0.49 -0.52 a 2.55 2.55 0 0 0 -3.34 0.29 A 2.86 2.86 0 0 0 6.77 11.44 Z"/>
-                    </Svg>
-                </Btn>
+                <Btn> <PlusSvg /> </Btn>
+                <Btn> <HeartSvg /> </Btn>
             </Icons>
+            <DIV isActive={isDisplayed}>
+                <IconDiv>
+                    <PlayIcon onClick={ () => history.push("/playlist")}/>
+                    <RightIcon>
+                        <MoreIcon />
+                        <PlusIcon />
+                        <HeartIcon onClick={IsClickedHeart} ColoredHeart={isHeart}/>
+                    </RightIcon>
+                </IconDiv>
+            </DIV>
         </Wrapper>
+        
         </>
     )
 }
@@ -43,6 +58,7 @@ color: white;
 font-size: 13px;
 font-weight: 500;
 margin-bottom: 2px;
+position: relative;
 `;
 const ImgContainer = styled.div`
 width: 54px;
@@ -54,7 +70,7 @@ const IMG = styled.img`
 width:100%;
 `;
 const Title = styled.div`
-width: 40%;
+width: 45%;
 display: flex;
 align-items: center;
 padding-left: 20px;
@@ -69,7 +85,7 @@ padding-left: 10px;
     }
 `;
 const Album = styled.a`
-width: 25%;
+width: 35%;
 display: flex;
 align-items: center;
 padding-left: 10px;
@@ -78,30 +94,16 @@ padding-left: 10px;
     }
 `;
 const Time = styled.div`
-width: 77px;
+width: 10%;
 display: flex;
 align-items: center;
 padding-left: 10px;
 `;
 const Icons = styled.div`
+padding-left: 30px;
 width: 180px;
 display: flex;
 align-items: center;
-`;
-const MoreIcon = styled.div`
-position: relative;
-width: 24px;
-height: 24px;
-display: flex;
-justify-content: center;
-align-items: center;
-`;
-const Circle = styled.circle`
-background-color: rgba(229, 238, 255, 0.6);
-width: 3px;
-height: 3px;
-border-radius: 50%;
-margin-left: 2px;
 `;
 const Btn = styled.button`
 width:24px;
@@ -112,14 +114,63 @@ background-color: transparent;
     display: none;
 }
 `;
-const Svg = styled.svg`
-width:24px;
-height: 24px;
+const PlusSvg = styled(Plus)`
+width: 18px;
+height: auto;
+color: rgb(229, 238, 255, 0.6);
 `;
-const Path = styled.path`
-width:24px;
-height: 24px;
-/* fill-rule: evenodd; */
-fill: rgba(229, 238, 255, 0.6);
+const HeartSvg = styled(Heart)`
+margin-top: 3px;
+margin-left: 3px;
+color: rgb(229, 238, 255, 0.6);
+width:18px;
+height: 18px;
+`;
+
+const DIV = styled.div`
+width: 100%;
+height: 48px;
+background: black;
+opacity: 0.6;
+position: absolute;
+top: 0;
+left: 0;
+cursor: pointer;
+display: ${props => props.isActive ? "block" : "none"};
+`;
+const IconDiv = styled.div`
+margin-top: 7px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+`;
+const PlayIcon = styled(ControllerPlay)`
+margin-left: 5px;
+width: 30px;
+height: auto;
+&:hover{
+     color:gray;
+ }
+`;
+const RightIcon = styled.div`
+padding-right: 54px;
+display: flex;
+`;
+const MoreIcon = styled(MoreHorizontalOutline)`
+width: 20px;
+height: auto;
+color: white;
+margin: 7px;
+`;
+const PlusIcon = styled(Plus)`
+width:18px;
+margin-right: 7px;
+height: auto;
+color: white;
+`;
+const HeartIcon = styled(Heart)`
+width:18px;
+height: auto;
+color: ${props => props.ColoredHeart ? "red" : "white"};
 `;
 export default NewTrackBox
