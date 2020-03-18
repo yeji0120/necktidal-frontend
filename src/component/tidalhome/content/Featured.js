@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react'
+import { HURL } from "config";
 import FeaturedBox from 'component/tidalhome/content/FeaturedBox'
-import FeaturedData from 'component/tidalhome/content/data/FeaturedData'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+
 
 const Featured = () => {
+  const [data,setData] = useState([]);
   const [isClicked,setIsClicked] = useState(0);
 
+  useEffect(()=>{
+    fetch(`${HURL}/music/album/top-rank?limit=16`,
+    {method: "GET" 
+})
+    .then(res => res.json())
+    .then(res => setData(res.featured_albums))
+}, [])
+
+
   const moveRight = () => {
-    if(isClicked<=-2400) {
+    if(isClicked<=-3700) {
       return;
     } else {
       setIsClicked(isClicked - 300)
@@ -41,14 +52,14 @@ const Featured = () => {
               </RightBtn>
               <FeaturedContainer >
                 <DIV isMoved={isClicked}>
-                {FeaturedData.map(item => {
+                {data.map(item => {
                       return ( 
                       <FeaturedBox 
                       id={item.id}
-                      img={item.img}
                       head={item.head}
-                      title={item.title}
-                      subtitle={item.subtitle}
+                      img={item.thumbnail_url}
+                      title={item.artist[0].name}
+                      subtitle={item.name}
                       />   
                       )
                   })}
@@ -101,7 +112,6 @@ transform: rotate(180deg);
 fill: white;
 cursor: pointer;
 display: block;
-/* display: ${props => props.isBlocked ? "block" : "none"}; */
 `;
 const RightBtn = styled.div`
 position: absolute;
@@ -118,7 +128,6 @@ const RightSvg = styled.svg`
 fill:white;
 height:40px;
 cursor: pointer;
-/* display: ${props => props.isBlocked ? "block" : "none"}; */
 `;
 const Path = styled.path``;
 

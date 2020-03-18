@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import NewAlbumBox from 'component/tidalhome/content/NewAlbumBox'
-import styled, { css } from 'styled-components'
+import { HURL } from "config";
+import styled from 'styled-components'
 
 const PopularPlaylists = () => {
     const [data,setData] = useState([]);
     const [isClicked,setIsClicked] = useState(0);
 
     useEffect(()=>{
-        // fetch("http://10.58.3.46:8001/music/album/new?limit=10",
-        fetch("http://localhost:3000/Data/NewAlbumData.json",
+        fetch(`${HURL}/music/playlist?limit=16`,
+        // fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })
         .then(res => res.json())
-        .then(res => setData(res.albums))
+        .then(res => setData(res.playlists))
 
     }, [])
 
     const moveRight = () => {
         console.log('setIsClicked', setIsClicked);
-        if(isClicked<=-2000) {
+        if(isClicked<=-1805) {
           return;
         } else {
           setIsClicked(isClicked - 300)
@@ -58,8 +59,8 @@ const PopularPlaylists = () => {
                         return (
                         <NewAlbumBox 
                         id={item.id}
-                        title={item.album}
-                        subtitle={item.artist[0].name}
+                        title={item.name}
+                        subtitle={item.creator}
                         thumbnail={item.thumbnail_url}
                         />
                         )
@@ -153,6 +154,5 @@ transform: translateX(${props=> props.isMoved}px);
 transition: 1s;
 display: flex;
 height: 280px;
-margin-left: 30px;
 `;
 export default PopularPlaylists

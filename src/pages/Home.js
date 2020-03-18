@@ -12,7 +12,7 @@ const Home = () => {
           <Nav />
         </Left>
         <Right>
-          <Header />
+          <Header title={"Home"}/>
           <Content />
         </Right>
       </Container>
@@ -35,6 +35,5 @@ const Right = styled.div`
   height: 100vh;
 `;
 
-const Tidalhomediv = styled.div``;
 
 export default Home;

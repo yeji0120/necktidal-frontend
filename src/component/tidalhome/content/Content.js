@@ -4,7 +4,7 @@ import RecentlyPlayed from 'component/tidalhome/content/RecentlyPlayed'
 import NewTrack from 'component/tidalhome/content/NewTrack'
 import NewAlbum from 'component/tidalhome/content/NewAlbum'
 import PoplularPlaylists from 'component/tidalhome/content/PopularPlaylists'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Content = () => {
     return (

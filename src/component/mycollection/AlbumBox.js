@@ -1,13 +1,10 @@
 import React, {useState} from 'react'
-import { useHistory } from "react-router-dom";
-import { YURL } from "config";
-import styled from 'styled-components'
 import {Heart} from '@styled-icons/boxicons-solid/Heart'
 import {MoreHorizontalOutline} from '@styled-icons/evaicons-outline/MoreHorizontalOutline'
 import {ControllerPlay} from '@styled-icons/entypo/ControllerPlay'
+import styled from 'styled-components'
 
 const NewAlbumBox = (props) => {
-    let history = useHistory();
     const[isDisplayed,setIsDisplayed] = useState(false)
     const[isHeart, setHeart] = useState(false)
 
@@ -17,43 +14,27 @@ const NewAlbumBox = (props) => {
     const IsLeaved = () => {
         setIsDisplayed(!isDisplayed);
     }
-   
-    // let token = localStorage.getItem("token")
-    // 토큰 자리에 token이라고 적으면 됨.
     const IsClickedHeart = () => {
-        fetch(`${YURL}/account/collection?category=album`,{
-            method:'POST',
-            headers:{
-                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impva2VyMTIzQGFiYy5hYmMifQ.aPg4vew-qvimiQUNKIP4b2j6Nbxbk6FDZcrzhk992-M'
-            },
-            body: JSON.stringify({
-                album_id: props.id
-            })
-        })
-
         setHeart(!isHeart);
     }
-
-        
     return (
         <>
         <Wrapper>
             <ImgWrapper onMouseOver={IsEntered} onMouseOut={IsLeaved}>
                 <IMG src={props.thumbnail} alt="" />
                 <DIV isActive={isDisplayed} >
-                <Icons>
-                    <MoreIcon />
-                    <Playbtn onClick={ () => history.push("/playlist")} >
-                    <PlayIcon />
-                    </Playbtn>
-                    <HeartIcon onClick={IsClickedHeart} ColoredHeart={isHeart}/>
-                </Icons>
-            </DIV>
+                    <Icons>
+                        <MoreIcon />
+                        <Playbtn >
+                        <PlayIcon />
+                        </Playbtn>
+                        <HeartIcon onClick={IsClickedHeart} ColoredHeart={isHeart}/>
+                    </Icons>
+                 </DIV>
             </ImgWrapper>
-           
             <DetailWrapper>
                 <Title>{props.title}</Title>
-                <Subtitle> {props.subtitle}</Subtitle>
+                <Subtitle>{props.subtitle}</Subtitle>
             </DetailWrapper>
         </Wrapper>
         </>
@@ -61,14 +42,14 @@ const NewAlbumBox = (props) => {
 }
 
 const Wrapper = styled.div`
-width: 170px;
-height: 230px;
+width: 213px;
+height: 280px;
 margin-right: 20px;
 position: relative;
 `;
 const ImgWrapper = styled.div`
-width: 170px;
-height: 170px;
+width: 213px;
+height: 213px;
 overflow: hidden;
 cursor: pointer;
 `;
@@ -77,8 +58,8 @@ width: 100%;
 height: 100%;
 `;
 const DIV = styled.div`
-width: 170px;
-height: 170px;
+width: 213px;
+height: 213px;
 background: black;
 opacity: 0.7;
 position: absolute;
@@ -89,7 +70,7 @@ display: ${props => props.isActive ? "block" : "none"};
 `;
 const Icons = styled.div`
 position: relative;
-top: 70px;
+top: 90px;
 left: 0;
 width: 100%;
 display: flex;
@@ -107,7 +88,7 @@ height: auto;
 const Playbtn = styled.div``;
 const PlayIcon = styled(ControllerPlay)`
 width: 30px;
-margin: 0 9px;
+margin: 0 15px;
 height: auto;
 &:hover{
      color:gray;
@@ -116,10 +97,7 @@ height: auto;
 const HeartIcon = styled(Heart)`
 width: 26px;
 height: auto;
-/* &:hover{
-     fill: gray;
- } */
-color: ${props => props.ColoredHeart ? "red" : "white"};
+color: red;
 
 `;
 const DetailWrapper = styled.div`
@@ -134,6 +112,7 @@ flex-direction: column;
 `;
 const Title = styled.a`
 padding-top: 8px;
+margin-bottom: 3px;
 width: 288px;
 height: 24px;
 color: white;
@@ -148,9 +127,8 @@ cursor: pointer;
 const Subtitle = styled.a`
 width: 288px;
 height: 24px;
-padding-top: 6px;
 color: rgba(255, 255, 255, 0.5);
-font-size: 13px;
+font-size: 12px;
 font-weight: 500;
 &:hover {
      text-decoration: underline;

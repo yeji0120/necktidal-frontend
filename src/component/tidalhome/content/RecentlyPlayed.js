@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import NewAlbumBox from 'component/tidalhome/content/NewAlbumBox'
-import styled, { css } from 'styled-components'
+import { HURL } from "config";
+import styled from 'styled-components'
 
 const RecentlyPlayed = () => {
     const [data,setData] = useState([]);
     const [isClicked,setIsClicked] = useState(0);
     
     useEffect( () => {
-        // fetch("http://10.58.3.46:8001/music/?",
+        // fetch(`${HURL}music/?limit=1&days=7`,
         fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })

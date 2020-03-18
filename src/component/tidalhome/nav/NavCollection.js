@@ -1,7 +1,9 @@
 import React from 'react'
+import { useHistory} from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const NavCollection = () => {
+    let history = useHistory();
     return (
         <>
      
@@ -31,7 +33,7 @@ const NavCollection = () => {
                  </HoverBox>
              </Container>
              <Container>
-                 <HoverBox>
+                 <HoverBox onClick={ () => history.push("/mycollectionalbum")}>
                     <Icon>
                         <Path d="M 20 5.63 A 10.2 10.2 0 0 0 4 18.37 a 10.13 10.13 0 0 0 6.84 3.77 A 10.42 10.42 0 0 0 12 22.2 A 10.2 10.2 0 0 0 20 5.63 Z M 20.65 13 A 8.7 8.7 0 1 1 12 3.3 a 8.79 8.79 0 0 1 1 0.05 A 8.7 8.7 0 0 1 20.65 13 Z" />
                         <Path d="M 12 9 a 3 3 0 1 0 3 3 A 3 3 0 0 0 12 9 Z m 0 4.5 A 1.5 1.5 0 1 1 13.5 12 A 1.5 1.5 0 0 1 12 13.5 Z" />
