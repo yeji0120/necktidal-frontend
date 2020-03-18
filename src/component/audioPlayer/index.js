@@ -573,7 +573,6 @@ const VolumeControl = styled.div`
 
 const VolumeButton = styled.div`
   position: relative;
-
   ${VolumeControl} {
     display: ${({ isVolumeDragging }) => (isVolumeDragging ? "block" : "none")};
   }
@@ -670,7 +669,7 @@ const AudioTag = ({ url }) => {
           >
             <MdIcon
               name={volume === 0 ? "volume_off" : "volume_up"}
-              style={{ color: "white" }}
+              style={isVolumeDragging ? { color: "gray" } : { color: "white" }}
             />
           </button>
           <VolumeControl>
@@ -699,7 +698,8 @@ function AudioPlayer(props) {
   return (
     <MediaContextProvider>
       <div>
-        <AudioTag url="http://10.58.3.46:8001/music/text?track_id=2" />
+        <AudioTag />
+        {/* <AudioTag url="http://10.58.3.53:8002//music/track?track_id=${this.props.match.params.id}" /> */}
         {/*  <AudioTag url={props로 받은 url주소를 여기에 넣는다 ex/props.url} /> */}
       </div>
 

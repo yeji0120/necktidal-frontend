@@ -5,3 +5,9 @@ export const MdIcon = ({ name, className = "", style }) => (
     {name}
   </i>
 );
+
+// export const Icons = ({ name, className = "", style }) => {
+//   <i style={style} className={`styled-icons ${className}`}>
+//     {name}
+//   </i>;
+// };

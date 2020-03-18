@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { keyframes, css } from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
 
 import PlaylistHeaderContainer from "component/tidalplaylist/PlaylistHeader";
@@ -13,51 +13,101 @@ import BioBox from "component/tidalplaylist/BioBox";
 import SuggestedTracksContainer from "component/tidalplaylist/SuggestedTracksContainer";
 
 const Tidalplaylist = props => {
+  const [trackData, setTrackData] = useState([]);
+
+  const [url, setUrl] = useState(
+    "https://resources.tidal.com/images/beefa965/780c/40f6/a52b/1011cfd234e4/320x320.jpg"
+  );
+  const getTrackData = () => {
+    // fetch("http://10.58.3.53:8001/music/artist/84/toptrack")
+    fetch("http://localhost:3000/Data/Track.json")
+      .then(res => res.json())
+      .then(res => setTrackData(res.tracks));
+  };
+
+  const [albumData, setAlbumData] = useState([]);
+  const getAlbumData = () => {
+    // fetch("http://10.58.3.53:8001/music/artist/84")
+    fetch("http://localhost:3000/Data/Artist.json")
+      .then(res => res.json())
+      .then(res => setAlbumData(res.artist));
+  };
+
+  const StreamingChange = index => {
+    console.log("StreamingChange!!");
+  };
+
+  useEffect(() => {
+    getTrackData();
+  }, []);
+  console.log("TrackData ::: ", trackData);
+
   return (
-    <PlaylistMainContainer {...props}>
-      <PlaylistHeaderContainer />
-      <GlobalStyles />
-      <BackgroundCover
-        src="https://resources.tidal.com/images/7d7e4ce5/76c1/4e28/a49c/2bbf59b725ee/320x320.jpg"
-        alt="background-cover"
-      />
-      <PlaylistContainer>
-        <MainAlbumBox>
-          <Inner>
-            <Album size="488" />
-          </Inner>
-          <MiniInfoBox />
-          <AudioPlayer />
-          {/* <MusicBox /> */}
-          <TrackInfoBox />
-          <CreditsBox />
-          <BioBox />
-        </MainAlbumBox>
-        <SuggestedTracksContainer />
-      </PlaylistContainer>
-    </PlaylistMainContainer>
+    <div style={{ position: "relative" }}>
+      <Container {...props}>
+        <PlaylistHeaderContainer />
+        <PlaylistMainContainer {...props}>
+          <GlobalStyles />
+          <BackgroundCover
+            {...props}
+            src={url}
+            // src={index.thumbnail_url}
+            alt="background-cover"
+          />
+          <PlaylistContainer>
+            <MainAlbumBox>
+              <Inner>
+                <Album size="488" src={url} />
+              </Inner>
+              <MiniInfoBox trackData={trackData} />
+              <AudioPlayer />
+              {/* <MusicBox /> */}
+              <TrackInfoBox />
+              <CreditsBox />
+              <BioBox />
+            </MainAlbumBox>
+            <SuggestedTracksContainer
+              trackData={trackData}
+              StreamingChange={StreamingChange}
+              setUrl={setUrl}
+            />
+          </PlaylistContainer>
+        </PlaylistMainContainer>
+      </Container>
+    </div>
   );
 };
 
-// const OpenPlaylist = keyframes`
-// from{
-//   height: 0vh;
-// }
-// to{
-//   height: 100vh;
-// }
-// `;
-
-const PlaylistMainContainer = styled.div`
-  /* position: relative; */
-  overflow-x: hidden;
-  /* overflow-y: scroll; */
+const OpenPlaylist = keyframes`
+0%{
+  top: 100vh;
+  position:absolute;
+}
+90%{
+  top: 0vh;
+}
+100%{
+  position:fixed;
+}
+`;
+const Container = styled.div`
+  overflow: hidden;
   position: absolute;
-  bottom: 0;
+  top: 100vh;
+  top: ${props => (props.sizeUp ? "0vh" : "100vh")};
+  margin-bottom: 84px;
+  transition: top 0.2s linear;
+  animation: ${props => (props.sizeUp ? "OpenPlaylist 1s ease-in" : "none")};
+  animation-fill-mode: both;
+`;
+const PlaylistMainContainer = styled.div`
+  height: 100vh;
+  overflow-x: hidden;
+  top: 100vh;
+  height: 100vh;
+  margin-bottom: 84px;
   /* height: ${props => (props.sizeUp ? "100%" : "0vh")}; */
   /* display: ${props => (props.sizeUp ? "none" : "block")}; */
-  top: ${props => (props.sizeUp ? "0vh" : "100vh")};
-  transition: top 0.5s linear;
   /* background-image: url("https://resources.tidal.com/images/7d7e4ce5/76c1/4e28/a49c/2bbf59b725ee/320x320.jpg");
   background-size: cover; */
   /* backdrop-filter: blur(25px) brightness(25%); */
@@ -71,19 +121,17 @@ const BackgroundCover = styled.img`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -2;
+  z-index: -3;
   background-size: cover;
   filter: blur(25px) brightness(25%);
   transform: scale(1.1);
+  animation-fill-mode: both;
 `;
 const PlaylistContainer = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
   padding: 130px 130px 0px 130px;
-  /* overflow: scroll;
-  height: 100vh;
-  overflow-y: scroll; */
 `;
 const MainAlbumBox = styled.div`
   width: 60%;
@@ -95,5 +143,4 @@ const Inner = styled.div`
   align-items: center;
   margin-bottom: 60px;
 `;
-
 export default Tidalplaylist;

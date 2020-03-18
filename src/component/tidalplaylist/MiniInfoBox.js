@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
 import { MoreHorizontal } from "@styled-icons/evaicons-solid";
@@ -8,12 +8,13 @@ import { BackgroundColor } from "styled-icons/foundation";
 import QualityBtn from "component/tidalplaylist/QualityBtn";
 import IconInnerBox from "component/tidalplaylist/IconInnerBox";
 
-const MiniInfoBox = () => {
+const MiniInfoBox = props => {
+  console.log("PROPS ::: ", props.artist_info);
   return (
     <MiniInfoInnerBox>
       <MainInfo>
-        <MiniInfoTitle>Stargazing</MiniInfoTitle>
-        <MiniInfoArtist>Kygo, Justin, Jesso</MiniInfoArtist>
+        <MiniInfoTitle>OMG</MiniInfoTitle>
+        <MiniInfoArtist>Gryffin, Carly Rea Jepsen</MiniInfoArtist>
         <PlayingFrom>Playing from: My Tracks</PlayingFrom>
       </MainInfo>
       <InfoIconBox>
