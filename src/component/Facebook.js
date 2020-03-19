@@ -10,12 +10,8 @@ class LoginFacebook extends Component {
         picture: '',
         email:''
     }
-    //kim
     responseFacebook = response => {
         console.log(response);
-       
-         
-              console.log(response)
         fetch('http://10.58.3.82:8000/account/social_signin', {
             method: 'POST',
             headers: {'Authorization':response.accessToken
@@ -27,7 +23,7 @@ class LoginFacebook extends Component {
          
             if (res.user_info.access_token) {
               this.props.history.push("/home");
-              localStorage.setItem("token", res.access_token);
+              localStorage.setItem("token", res.user_info.access_token);
             } else {
              alert("실패");
             }

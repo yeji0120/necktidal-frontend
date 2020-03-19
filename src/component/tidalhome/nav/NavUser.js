@@ -1,18 +1,31 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled, { css } from 'styled-components'
 
 const NavUser = () => {
     const [isClicked, setIsClicked] = useState(false)
-
     const AddClick = () => {
         setIsClicked(!isClicked);
     }
+    const [userInfo, setUserInfo] = useState("");
+    let token = localStorage.getItem("token")
+    useEffect(()=>{
+        fetch('http://10.58.7.72:8000/account/',{
+            method:'GET',
+            headers:{'Authorization':token
+            }
+        })
+        .then(res => res.json())
+        .then(res=>{
+            setUserInfo(res.user_info.name)
+
+        })
+    })
     return (
        <>
        <Wrapper draggable="false">
         <Container onClick={AddClick}>
             <UserIcon> 
-                <ID>ce</ID> 
+            <ID>{userInfo}</ID> 
             </UserIcon>
             <MoreIcon>
                 <Circle />
