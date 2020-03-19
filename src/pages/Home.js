@@ -3,8 +3,11 @@ import Nav from "component/tidalhome/nav/Nav";
 import Header from "component/tidalhome/header/Header";
 import Content from "component/tidalhome/content/Content";
 import styled, { css } from "styled-components";
+import TidalPlayBar from "component/tidalPlayBar/TidalPlayBar";
+import { ShowModal } from "store/Actions/index";
+import { connect } from "react-redux";
 
-const Home = () => {
+const Home = ({ ShowModal }) => {
   return (
     <div draggable="false">
       <Container>
@@ -12,10 +15,11 @@ const Home = () => {
           <Nav />
         </Left>
         <Right>
-          <Header title={"Home"}/>
+          <Header title={"Home"} />
           <Content />
         </Right>
       </Container>
+      {ShowModal && <TidalPlayBar />}
     </div>
   );
 };
@@ -27,7 +31,7 @@ const Container = styled.div`
 
 const Left = styled.div`
   width: 240px;
-  height: 100vh;
+  height: auto;
 `;
 
 const Right = styled.div`
@@ -35,5 +39,7 @@ const Right = styled.div`
   height: 100vh;
 `;
 
-
-export default Home;
+const mapStateToProps = state => {
+  return { ShowModal: state.ShowModal };
+};
+export default connect(mapStateToProps, {})(Home);

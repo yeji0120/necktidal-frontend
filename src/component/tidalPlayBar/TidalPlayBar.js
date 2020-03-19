@@ -1,18 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
-
-import Album from "component/tidalplaylist/Album";
 import IconInnerBox from "component/tidalplaylist/IconInnerBox";
 import QualityBtn from "component/tidalplaylist/QualityBtn";
 import AudioPlayer from "component/audioPlayer";
 import Tidalplaylist from "component/tidalplaylist/Tidalplaylist";
+import { connect } from "react-redux";
+import { HURL } from "config";
+import { ShowModalAction } from "store/Actions/index";
 
 import { Expand } from "@styled-icons/evaicons-solid";
 
 const TidalPlayBar = props => {
   const [sizeUp, setSizeUp] = useState(false);
+
   console.log("sizeUp", sizeUp);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // console.log("props.PlayId", props.PlayId);
+    // fetch(`http://10.58.3.53:8002/music/track/${props.PlayId}`)
+    fetch("http://localhost:3000/Data/Track.json")
+      .then(res => res.json())
+      // .then(res => console.log("res : ", res));
+      .then(res => setData(res.track));
+  });
+
+  useEffect(() => {
+    console.log("clicked");
+  }, [data]);
+
+  // useEffect(
+  //   (state, props) => {
+  //     return {
+  //       ShowModal: state.ShowModal
+  //     };
+  //     props.ShowModalAction();
+  //   },
+  //   [data]
+  // );
+
+  // const CheckModal = (state, props) => {
+  //   if (props.PlayId) {
+  //     return { ShowModal: state.ShowModal };
+  //   }
+  // };
+  // props.ShowModalAction();
 
   return (
     <div style={{ position: "relative" }}>
@@ -20,19 +54,14 @@ const TidalPlayBar = props => {
         <PlayBarContainer>
           <LeftBox>
             <AlbumHoverBox>
-              <SizeupBtn onClick={() => setSizeUp(!sizeUp)}>
+              <SizeupBtn onClick={() => setSizeUp(true)}>
                 <SizeupIcon />
               </SizeupBtn>
-              <Album
-                size="60"
-                src={
-                  "https://resources.tidal.com/images/beefa965/780c/40f6/a52b/1011cfd234e4/320x320.jpg"
-                }
-              />
+              <AlbumImg src={data.album_info[0].thumbnail_url} alt="AlbumImg" />
             </AlbumHoverBox>
             <MainInfo>
-              <MiniInfoTitle>OMG</MiniInfoTitle>
-              <MiniInfoArtist>Gryffin, Carly Rea Jepsen</MiniInfoArtist>
+              <MiniInfoTitle>{data.name}</MiniInfoTitle>
+              <MiniInfoArtist>{data.artist_info[0].name}</MiniInfoArtist>
               <PlayingFrom>Playing from: My Tracks</PlayingFrom>
             </MainInfo>
             <div style={{ margin: "0px 20px" }}>
@@ -53,6 +82,14 @@ const TidalPlayBar = props => {
     </div>
   );
 };
+
+const mapStateToProps = state => {
+  return { ShowModal: state.ShowModal, PlayId: state.PlayId };
+};
+
+export default connect(mapStateToProps, { ShowModalAction, TidalPlayBar })(
+  TidalPlayBar
+);
 
 const Container = styled.div`
   width: 100vw;
@@ -97,7 +134,9 @@ const SizeupIcon = styled(Expand)`
   height: 30px;
   color: white;
 `;
-
+const AlbumImg = styled.img`
+  width: 60px;
+`;
 const MainInfo = styled.div`
   margin-left: 20px;
   line-height: 20px;
@@ -124,5 +163,3 @@ const PlayingFrom = styled.div`
 //   margin: 0px 20px;
 // `;
 const RightBox = styled.div``;
-
-export default TidalPlayBar;

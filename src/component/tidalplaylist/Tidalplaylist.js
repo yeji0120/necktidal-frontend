@@ -92,19 +92,19 @@ const OpenPlaylist = keyframes`
 `;
 const Container = styled.div`
   overflow: hidden;
-  position: absolute;
-  top: 100vh;
+  position: fixed;
+  /* top: 100vh; */
   top: ${props => (props.sizeUp ? "0vh" : "100vh")};
-  margin-bottom: 84px;
+  /* margin-bottom: 84px; */
   transition: top 0.2s linear;
   animation: ${props => (props.sizeUp ? "OpenPlaylist 1s ease-in" : "none")};
   animation-fill-mode: both;
+  z-index: 10000;
 `;
 const PlaylistMainContainer = styled.div`
   height: 100vh;
   overflow-x: hidden;
   top: 100vh;
-  height: 100vh;
   margin-bottom: 84px;
   /* height: ${props => (props.sizeUp ? "100%" : "0vh")}; */
   /* display: ${props => (props.sizeUp ? "none" : "block")}; */

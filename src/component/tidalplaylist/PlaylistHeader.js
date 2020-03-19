@@ -21,7 +21,7 @@ const PlaylistHeaderContainer = () => {
         <NecktidalLogo
           src="necktidal-logo.png"
           alt="necktidal-logo"
-          onClick={() => history.push("/home")}
+          onClick={() => history.push("/")}
         />
       </FlexBox>
       <SearchBox>
