@@ -6,13 +6,16 @@ const NewTrack = () => {
     const [data,setData] = useState([]);
 
     useEffect(()=>{
-        fetch("http://10.58.3.46:8000/music/track/new?limit=5",
+        fetch("http://10.58.3.53:8001/music/track/new?limit=5",
         {method: "GET" 
     })
         .then(res => res.json())
         .then(res => setData(res.tracks))
 
     }, [])
+
+
+
     return (
         <>
         <Wrapper>
@@ -38,7 +41,7 @@ const NewTrack = () => {
                             artist={item.artist_info[0].name}
                             album={item.album_info[0].name}
                             thumbnail={item.album_info[0].thumbnail_url}
-                            time={item.time.slice(3,8)}
+                            time={item.time.slice(4,8)}
                             />
                         )
                     })}
@@ -55,6 +58,7 @@ height: 370px;
 padding-bottom: 30px;
 overflow: hidden;
 background-color: black;
+position: relative;
 `;
 const Header = styled.div`
 margin-top: 5px;
@@ -103,7 +107,7 @@ width: 54px;
 contain: strict;
 `;
 const Title = styled.div`
-width: 40%;
+width: 45%;
 display: flex;
 align-items: center;
 padding-left: 10px;
@@ -115,16 +119,15 @@ align-items: center;
 padding-left: 10px;
 `;
 const Album = styled.div`
-width: 25%;
+width: 35%;
 display: flex;
 align-items: center;
 padding-left: 10px;
 `;
 const Time = styled.div`
-width: 77px;
+width: 10%;
 display: flex;
 align-items: center;
-padding-left: 10px;
 `;
 const Right = styled.div`
 width: 180px;

@@ -20,7 +20,8 @@ const NewAlbumBox = (props) => {
         //fetch post, 하트 색깔 바꾸기    
         setHeart(!isHeart);
     //     fetch("http://10.58.3.46:8001/music/album/new/${props.id}",
-    //     {method: "POST"
+    //     {method: "POST",
+            // body: ${props.id}
     // })
     //주석
     }
