@@ -14,10 +14,12 @@ const NavPlaylists = () => {
 
     const [title, setTitle] = useState('');
     const [ desc, setDesc] = useState('');
+    const [playlist, setPlaylist] = useState([])
     useEffect(()=>{
         console.log({
             title,
-            desc
+            desc,
+            playlist
         });
     });
 
@@ -26,6 +28,48 @@ const NavPlaylists = () => {
     }
     const onChangeDesc = e =>{
         setDesc(e.target.value)
+    }
+    let token = localStorage.getItem("token")
+    const handlesave = () => {
+        fetch('http://10.58.3.82:8000/account/playlist',{
+            method:'POST',
+            headers:{'Authorization':token
+            },
+            body: JSON.stringify({
+                playlist_name:title,
+                description:desc
+            })
+
+        })
+        .then(res => res.json())
+        .then(res=>{
+            return setModalIsOpen(false)
+
+        })
+    }
+    useEffect(()=>{
+        fetch('http://10.58.3.82:8000/account/playlist',{
+            method:'GET',
+            headers:{'Authorization':token
+            }
+        })
+        .then(res => res.json())
+        .then(res=>{
+            setPlaylist(res.playlists)
+
+        })
+    },[]);
+
+    const goDelete = (name) =>{
+        fetch(`http://10.58.3.82:8000/account/playlist`,{
+            method: 'Delete',
+            headers: {
+                'Authorization':token
+            },
+            body: JSON.stringify({
+                playlist_name:name
+            })
+        }) 
     }
 
     return (
@@ -58,6 +102,16 @@ const NavPlaylists = () => {
                     <Text >Create new playlist</Text>
                  </HoverBox>
              </Container>
+             {playlist && playlist.map((el,idx)=>(
+                        <Container key={idx}>
+                            <HoverBox>
+                                <Text >{el.name}</Text>
+                                <Delete
+                                onClick={()=>{goDelete(el.name)}}>삭제</Delete>
+                            </HoverBox>
+                        </Container>
+             ))
+}
              <Modal isOpen={modalIsOpen} onRequestClose={()=> setModalIsOpen(false)}
              style={
                  {
@@ -96,7 +150,8 @@ const NavPlaylists = () => {
                  <Ptaginput2
                  value={desc}
                  onChange={onChangeDesc}></Ptaginput2>
-                 <CreateNew>Create New</CreateNew>
+                 <CreateNew
+                 onClick={handlesave}>Create New</CreateNew>
              </Modal>
          </Wrapper>
         </>
@@ -282,5 +337,10 @@ margin-left: 15px;
 font-size: 12px;
 color: white;
 `
+const Delete = styled.span`
+font-size:8px;
+:hover{
+    color:white;
+}`
 
 export default NavPlaylists
