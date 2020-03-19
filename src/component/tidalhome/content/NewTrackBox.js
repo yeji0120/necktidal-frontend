@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useHistory } from "react-router-dom";
-import styled, { css } from 'styled-components'
+import {HURL, YURL} from 'config';
+import styled from 'styled-components'
 import {Heart} from '@styled-icons/boxicons-solid/Heart'
 import {ControllerPlay} from '@styled-icons/entypo/ControllerPlay'
 import {Plus} from '@styled-icons/evaicons-solid/Plus'
@@ -18,8 +19,14 @@ const NewTrackBox = (props) => {
         setIsDisplayed(!isDisplayed);
     }
     const IsClickedHeart = () => {
-        //fetch post, 하트 색깔 바꾸기    
+        //fetch post, 하트 색깔 바꾸기  
         setHeart(!isHeart);
+    }
+    const IsClickedPlay =() => {
+        history.push("/playlist")
+        fetch(`${HURL}/music/track?track_id=${props.id}` ,{
+            method: 'POST'
+        })
     }
     return (
         <>
@@ -32,12 +39,12 @@ const NewTrackBox = (props) => {
             <Album>{props.album}</Album>
             <Time>{props.time}</Time>
             <Icons>
-                <Btn> <PlusSvg /> </Btn>
-                <Btn> <HeartSvg /> </Btn>
+                {/* <Btn> <PlusSvg /> </Btn>
+                <Btn> <HeartSvg /> </Btn> */}
             </Icons>
             <DIV isActive={isDisplayed}>
                 <IconDiv>
-                    <PlayIcon onClick={ () => history.push("/playlist")}/>
+                    <PlayIcon onClick={IsClickedPlay}/>
                     <RightIcon>
                         <MoreIcon />
                         <PlusIcon />
@@ -105,27 +112,27 @@ width: 180px;
 display: flex;
 align-items: center;
 `;
-const Btn = styled.button`
-width:24px;
-height: 24px;
-border: none;
-background-color: transparent;
-&:focus {
-    display: none;
-}
-`;
-const PlusSvg = styled(Plus)`
-width: 18px;
-height: auto;
-color: rgb(229, 238, 255, 0.6);
-`;
-const HeartSvg = styled(Heart)`
-margin-top: 3px;
-margin-left: 3px;
-color: rgb(229, 238, 255, 0.6);
-width:18px;
-height: 18px;
-`;
+// const Btn = styled.button`
+// width:24px;
+// height: 24px;
+// border: none;
+// background-color: transparent;
+// &:focus {
+//     display: none;
+// }
+// `;
+// const PlusSvg = styled(Plus)`
+// width: 18px;
+// height: auto;
+// color: rgb(229, 238, 255, 0.6);
+// `;
+// const HeartSvg = styled(Heart)`
+// margin-top: 3px;
+// margin-left: 3px;
+// color: rgb(229, 238, 255, 0.6);
+// width:18px;
+// height: 18px;
+// `;
 
 const DIV = styled.div`
 width: 100%;

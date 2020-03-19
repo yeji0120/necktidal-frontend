@@ -1,12 +1,14 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const NavMenu = () => {
+    let history = useHistory();
     return (
         <>
         <Wrapper>
             <Container>
-                <HoverBox>
+                <HoverBox onClick={ () => history.push("/home")}>
                     <TEXT>Home</TEXT>
                 </HoverBox>
            </Container>

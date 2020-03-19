@@ -1,39 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { HURL } from "config";
+import { useHistory } from "react-router-dom";
 import NewAlbumBox from 'component/tidalhome/content/NewAlbumBox'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const NewAlbum = () => {
+    let history = useHistory();
     const [data,setData] = useState([]);
     const [isClicked,setIsClicked] = useState(0);
 
-
-    // function fetchData() {
-    //     const res = await fetch("http://10.58.2.53:8000/music/album", {
-    //         method: "GET"
-    //     });
-    //     res.json()
-    //     .then(res => setData(res.new_albums));
-    // }
-
-    // useEffect(() => {
-    //     fetchData();
-    // });
-
-
     useEffect(()=>{
-        // fetch("http://10.58.3.46:8001/music/album/new?limit=10",
-        fetch("http://localhost:3000/Data/NewAlbumData.json",
+        fetch(`${HURL}/music/album/new?limit=16&days=16`,
+        // fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })
         .then(res => res.json())
-        // .then(res => console.log(res))
         .then(res => setData(res.albums))
-
+        // .then(res => console.log(res))
     }, [])
 
     const moveRight = () => {
         console.log('setIsClicked', setIsClicked);
-        if(isClicked<=-800) {
+        if(isClicked<=-1801) {
           return;
         } else {
           setIsClicked(isClicked - 300)
@@ -54,7 +42,7 @@ const NewAlbum = () => {
         <Wrapper>
             <Header>
                     <Title>Suggested New Albums</Title>
-                    <ViewAll>View all</ViewAll>
+                    <ViewAll onClick={ () => history.push("/viewall")}>View all</ViewAll>
             </Header>
             <ListContainer>
             <LeftBtn>
@@ -73,7 +61,7 @@ const NewAlbum = () => {
                         return (
                             <NewAlbumBox 
                             id={item.id}
-                            title={item.album}
+                            title={item.name}
                             subtitle={item.artist[0].name}
                             thumbnail={item.thumbnail_url}
                             />
@@ -119,9 +107,9 @@ cursor: pointer;
     }
 `;
 const ListContainer = styled.div`
+position: relative;
 height:280px;
 overflow: hidden;
-position: relative;
 `;
 const LeftBtn = styled.div`
 position: absolute;
@@ -168,7 +156,6 @@ transform: translateX(${props=> props.isMoved}px);
 transition: 1s;
 display: flex;
 height: 280px;
-margin-left: 30px;
 `;
 
 export default NewAlbum

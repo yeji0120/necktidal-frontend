@@ -8,6 +8,8 @@ import Playlist from 'pages/Playlist'
 import Signup from 'pages/Signup'
 import Createuser from 'pages/Createuser'
 import LoginPassword from 'pages/LoginPassword'
+import MyCollectionAlbum from 'pages/MyCollectionAlbum'
+import ViewAll from 'pages/ViewAll'
 import GlobalStyles from "component/GlobalStyles";
 
 
@@ -24,6 +26,8 @@ class Routes extends React.Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/createuser" component={Createuser} />
           <Route exact path="/loginpassword" component={LoginPassword}/>
+          <Route exact path="/mycollectionalbum" component={MyCollectionAlbum} />
+          <Route exact path="/viewall" component={ViewAll} />
           <GlobalStyles/>
         </Switch>
       </Router>

@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-const Header = () => {
+const Header = (props) => {
     return (
         <>
         <Wrapper>
@@ -15,7 +15,7 @@ const Header = () => {
                             <Path d="M 11.5 4.5 L 10.5 5.5 L 16.2 11.3 L 4 11.3 L 4 12.8 L 16.2 12.8 L 10.5 18.5 L 11.5 19.5 L 19.1 12 L 11.5 4.5 Z" />
                         </RightBtn>
                     </ArrowIcon>
-                    <Text>Home</Text>
+                    <Text>{props.title}</Text>
                 </Left>
                <Right>
                <Search>

@@ -1,12 +1,14 @@
 import React, {useState, useEffect}from 'react'
 import NewTrackBox from 'component/tidalhome/content/NewTrackBox'
-import styled, { css } from 'styled-components'
+import { HURL } from "config";
+import styled from 'styled-components'
 
 const NewTrack = () => {
     const [data,setData] = useState([]);
 
     useEffect(()=>{
-        fetch("http://10.58.3.53:8001/music/track/new?limit=5",
+        fetch(`${HURL}/music/track/new?limit=5&days=7`,
+        // fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET" 
     })
         .then(res => res.json())
