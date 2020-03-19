@@ -10,40 +10,47 @@ import Tidalplaylist from "component/tidalplaylist/Tidalplaylist";
 
 import { Expand } from "@styled-icons/evaicons-solid";
 
-const TidalPlayBar = () => {
+const TidalPlayBar = props => {
   const [sizeUp, setSizeUp] = useState(false);
   console.log("sizeUp", sizeUp);
 
   return (
-    <Container>
-      <PlayBarContainer>
-        <LeftBox>
-          <AlbumHoverBox>
-            <SizeupBtn onClick={() => setSizeUp(!sizeUp)}>
-              <SizeupIcon />
-            </SizeupBtn>
-            <Album size="60" />
-          </AlbumHoverBox>
-          <MainInfo>
-            <MiniInfoTitle>Stargazing</MiniInfoTitle>
-            <MiniInfoArtist>Kygo, Justin, Jesso</MiniInfoArtist>
-            <PlayingFrom>Playing from: My Tracks</PlayingFrom>
-          </MainInfo>
-          <div style={{ margin: "0px 20px" }}>
-            <IconInnerBox />
-          </div>
-          <div>
-            <QualityBtn />
-          </div>
-        </LeftBox>
-        <RightBox>
-          <div style={{ width: "800px" }}>
-            <AudioPlayer />
-          </div>
-        </RightBox>
-      </PlayBarContainer>
-      <Tidalplaylist sizeUp={sizeUp} />
-    </Container>
+    <div style={{ position: "relative" }}>
+      <Container>
+        <PlayBarContainer>
+          <LeftBox>
+            <AlbumHoverBox>
+              <SizeupBtn onClick={() => setSizeUp(!sizeUp)}>
+                <SizeupIcon />
+              </SizeupBtn>
+              <Album
+                size="60"
+                src={
+                  "https://resources.tidal.com/images/beefa965/780c/40f6/a52b/1011cfd234e4/320x320.jpg"
+                }
+              />
+            </AlbumHoverBox>
+            <MainInfo>
+              <MiniInfoTitle>OMG</MiniInfoTitle>
+              <MiniInfoArtist>Gryffin, Carly Rea Jepsen</MiniInfoArtist>
+              <PlayingFrom>Playing from: My Tracks</PlayingFrom>
+            </MainInfo>
+            <div style={{ margin: "0px 20px" }}>
+              <IconInnerBox />
+            </div>
+            <div>
+              <QualityBtn />
+            </div>
+          </LeftBox>
+          <RightBox>
+            <div style={{ width: "800px" }}>
+              <AudioPlayer />
+            </div>
+          </RightBox>
+        </PlayBarContainer>
+        <Tidalplaylist sizeUp={sizeUp} />
+      </Container>
+    </div>
   );
 };
 

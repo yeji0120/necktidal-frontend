@@ -1,56 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
 import { MoreHorizontal } from "@styled-icons/evaicons-solid";
 import { PlayListAdd } from "@styled-icons/remix-fill";
 import Album from "component/tidalplaylist/Album";
 
-const SuggestedTracksContainer = () => {
-  const [trackData, setTrackData] = useState([]);
-  const getTrackData = () => {
-    // fetch("http://10.58.3.46:8001/music/artist/84/toptrack")
-    fetch("http://localhost:3000/Data/Track.json")
-      .then(res => res.json())
-      .then(res => setTrackData(res.tracks));
-  };
-
+const SuggestedTracksContainer = props => {
   // useEffect(() => {
   //   console.log(state);
   // }, [state]);
 
-  useEffect(() => {
-    getTrackData();
-  }, []);
-  console.log(trackData, "이거");
-
   return (
     <SuggestedTracks>
       <SuggestedTitle>Suggested Tracks</SuggestedTitle>
-      {trackData.map((el, index) => {
+      {props.trackData.map((el, index) => {
+        console.log("URLURL!", el.album_info[0].thumbnail_url);
         return (
-          <SuggestedAlbum key={index}>
-            <SuggestedLeft>
-              <Album
-                size="42"
-                src={el.album_info[0].thumbnail_url}
-                alt="suggested-album-img"
-              />
-              <SuggestedInfoBox>
-                <InfoTitle>{el.album_info[0].name}</InfoTitle>
-                <InfoSinger>{el.artist_info[0].name}</InfoSinger>
-              </SuggestedInfoBox>
-            </SuggestedLeft>
-            <SuggestedRight>
-              <SuggestedIcon>
-                <ShowOptions>
-                  <MoreHorizontal />
-                </ShowOptions>
-                <QueueAddBtn>
-                  <PlayListAdd />
-                </QueueAddBtn>
-              </SuggestedIcon>
-            </SuggestedRight>
-          </SuggestedAlbum>
+          <HoverBox
+            onClick={() => {
+              console.log("CHANGE!!");
+              props.setUrl(el.album_info[0].thumbnail_url);
+            }}
+          >
+            <SuggestedAlbum key={index}>
+              <SuggestedLeft>
+                <Album
+                  size="42"
+                  src={el.album_info[0].thumbnail_url}
+                  alt="suggested-album-img"
+                />
+                <SuggestedInfoBox>
+                  <InfoTitle>{el.album_info[0].name}</InfoTitle>
+                  <InfoSinger>{el.artist_info[0].name}</InfoSinger>
+                </SuggestedInfoBox>
+              </SuggestedLeft>
+              <SuggestedRight>
+                <SuggestedIcon>
+                  <ShowOptions>
+                    <MoreHorizontal />
+                  </ShowOptions>
+                  <QueueAddBtn>
+                    <PlayListAdd />
+                  </QueueAddBtn>
+                </SuggestedIcon>
+              </SuggestedRight>
+            </SuggestedAlbum>
+          </HoverBox>
         );
       })}
     </SuggestedTracks>
@@ -65,11 +60,19 @@ const SuggestedTitle = styled.div`
   margin-bottom: 30px;
   color: white;
 `;
+const HoverBox = styled.div`
+  &:hover {
+    width: 100%;
+    background-color: gray;
+    opacity: 0.5;
+    border-radius: 10px;
+  }
+`;
 const SuggestedAlbum = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 7px 0px;
 `;
 const SuggestedLeft = styled.div`
   display: flex;

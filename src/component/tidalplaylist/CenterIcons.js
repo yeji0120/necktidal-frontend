@@ -3,7 +3,12 @@ import styled from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
 
 import { Shuffle } from "@styled-icons/boxicons-regular";
-import { SkipPrevious, Play, SkipNext } from "@styled-icons/boxicons-regular";
+import {
+  SkipPrevious,
+  Play,
+  SkipNext,
+  Pause
+} from "@styled-icons/boxicons-regular";
 import { Repeat } from "@styled-icons/remix-line";
 
 const CenterIcons = () => {

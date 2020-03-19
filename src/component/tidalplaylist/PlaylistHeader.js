@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
+import { useHistory } from "react-router-dom";
 
 import { CompressAlt } from "@styled-icons/fa-solid";
 import { Search } from "@styled-icons/evaicons-solid";
@@ -8,6 +9,7 @@ import { OrderPlay } from "@styled-icons/remix-fill";
 
 const PlaylistHeaderContainer = () => {
   const [inputFocus, setInputFocus] = useState(false);
+  let history = useHistory();
 
   return (
     <PlaylistHeader>
@@ -16,7 +18,11 @@ const PlaylistHeaderContainer = () => {
           <Alt />
         </ResizeBtn>
         <ResizeText>Minimized</ResizeText>
-        <NecktidalLogo src="necktidal-logo.png" alt="necktidal-logo" />
+        <NecktidalLogo
+          src="necktidal-logo.png"
+          alt="necktidal-logo"
+          onClick={() => history.push("/home")}
+        />
       </FlexBox>
       <SearchBox>
         <SearchInnerBox>
@@ -44,7 +50,8 @@ const PlaylistHeader = styled.div`
   display: flex;
   z-index: 3;
   justify-content: space-between;
-  background-color: #020709;
+  overflow: hidden;
+  /* background-color: #020709; */
 `;
 const FlexBox = styled.div`
   display: flex;
