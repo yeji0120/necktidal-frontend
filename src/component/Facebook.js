@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLoginBtn from 'react-facebook-login';
-import { YURL } from "config.js";
+import { HURL } from "config.js";
 import 'component/Facebook.css';
 import { withRouter } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ class LoginFacebook extends Component {
     }
     responseFacebook = response => {
         console.log(response);
-        fetch(`${YURL}/account/social-signin`, {
+        fetch(`${HURL}/account/social-signin`, {
             method: 'POST',
             headers: {'Authorization':response.accessToken
             }

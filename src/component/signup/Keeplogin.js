@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { YURL } from "config.js";
+import { HURL } from "config.js";
 import styled from 'styled-components';
 import Logo from 'component/images/logoimages.png';
 import { withRouter } from 'react-router-dom';
@@ -22,7 +22,7 @@ class Keeplogin extends Component {
     }
     
     handleClick = e => {
-        fetch(`${YURL}/account/signup/ `, {
+        fetch(`${HURL}/account/signup/ `, {
             method: 'POST',
             headers: {
             },

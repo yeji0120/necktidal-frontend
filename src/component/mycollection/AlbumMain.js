@@ -3,7 +3,8 @@ import Nav from 'component/tidalhome/nav/Nav';
 import Header from 'component/tidalhome/header/Header';
 import AlbumBox from 'component/mycollection/AlbumBox';
 import { HURL } from "config";
-import styled from 'styled-components';
+import styled from 'styled-components'; 
+
 
 
 const AlbumMain = () => {

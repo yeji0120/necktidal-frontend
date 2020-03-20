@@ -1,6 +1,6 @@
 import React from 'react';
-import AlbumMain from 'component/mycollection/AlbumMain'
-import styled from 'styled-components'
+import AlbumMain from 'component/mycollection/AlbumMain';
+import styled from 'styled-components';
 
 const MyCollectionAlbum = () => {
     return (
