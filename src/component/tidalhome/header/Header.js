@@ -1,7 +1,58 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, {useState, useEffect} from 'react';
+import styled from 'styled-components';
+import Modal from 'react-modal';
 
 const Header = (props) => {
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+
+    const [search,setSearch] = useState('');
+    const [Artist, setArtist] = useState([]);
+
+    // useEffect(()=>{
+    //     fetch(`http://10.58.3.53:8002/music/?search=${search}&limit=3`,{
+    //     method:'GET'
+    //     })
+    //     .then(res => res.json())  
+    //     .then(res=>{
+    //         res && setArtist(res)     
+    //     })
+    // });
+    //Artist에 search값이 한단계 늦게 입력되는것같다.
+    //modal이 검색시 포커스를 잃는다
+    const onChangeSearch = e =>{
+        setSearch(e.target.value)
+        setModalIsOpen(true)
+        if(e.target.value === ''){
+            setArtist([])
+        } else {
+        fetch(`http://10.58.3.53:8002/music/?search=${search}&limit=3`,{
+        method:'GET'
+        })
+        .then(res => res.json())  
+        .then(res=>{
+            res && setArtist(res)     
+        })
+        }
+    }
+    // useEffect(()=>{
+    //     const onChangeSearch = e =>{
+    //         setSearch(e.target.value)
+    //         if(e.target.value === ''){
+    //             setArtist([])
+    //         } else {
+    //         fetch(`http://10.58.3.53:8002/music/?search=${search}&limit=3`,{
+    //         method:'GET'
+    //         })
+    //         .then(res => res.json())  
+    //         .then(res=>{
+    //             res && setArtist(res)     
+    //         })
+    //         }
+    //     }
+    // })
+
+
+
     return (
         <>
         <Wrapper>
@@ -19,17 +70,156 @@ const Header = (props) => {
                 </Left>
                <Right>
                <Search>
-                    <SearchIcon>
+                    <SearchIcon
+                    onClick={()=> setModalIsOpen(true)}>
                         <Path d="M 20 19 l -4.26 -4.26 a 6.77 6.77 0 1 0 -1.06 1.06 L 19 20 Z M 5.25 10.5 a 5.25 5.25 0 1 1 5.25 5.25 A 5.26 5.26 0 0 1 5.25 10.5 Z" />
                     </SearchIcon>
-                    <SearchInput type="Search" placeholder="search" />
+                    <SearchInput 
+                    type="Search" 
+                    type="text"
+                    placeholder="search"
+                    onChange={onChangeSearch} />
                 </Search>
                </Right>
             </Container>
+            <Modal isOpen={modalIsOpen} onRequestClose={()=> setModalIsOpen(false)}
+             style={
+                 {
+                     overlay: {
+                        backgroundColor:'transparent',
+                     },
+                     content:{
+                         border:'none',
+                         borderRadius:"8px",
+                         backgroundColor:'#232428',
+                         position: 'absolute',
+                         width:'390px',
+                         height:'350px',
+                         position:'absolute',
+                         top:'80px',
+                         left:'78%',
+                         fontSize:'18px',
+                         fontFamily:'nationale-regular'
+                         
+                     }
+                 }
+             }
+             >  
+                 <ArtistSection>
+                        <Artists>Artists</Artists>
+                            {Artist.artist_results && Artist.artist_results.map((el,idx)=>{ console.log('name: ', Artist)
+                                return <Artistsdiv key={idx}>
+                                    <Picture src={el.thumbnail_url}></Picture>
+                                    <Detail>
+                                        <Detail1>{el.name}</Detail1>
+                                        <Detail2>Artist</Detail2>
+                                    </Detail>
+                                </Artistsdiv>
+                                })
+                            }
+                    
+                 </ArtistSection>
+                 
+                 <AlbumSection>
+                    <Albums>Albums</Albums>
+                        {Artist.album_results && Artist.album_results.map((el,idx)=>{ console.log('name:',Artist.album_results)
+                            return <Albumsdiv key={idx}>
+                                <Albumpicture src={el.thumbnail_url}></Albumpicture>
+                                <Albumdetail>
+                                    <Albumdetail1>{el.name}</Albumdetail1>
+                                    <Albumdetail2>Album by Jutin {el.artist}</Albumdetail2>
+                                </Albumdetail>
+                            </Albumsdiv>
+                            })
+                        }
+                 </AlbumSection>
+                
+
+
+             </Modal>
         </Wrapper>    
         </>
     )
 }
+// 모달이다
+const ArtistSection = styled.div``
+const AlbumSection = styled.div``
+const Artists = styled.div`
+color:white;
+margin-bottom:10px;`
+const Albums = styled.div`
+margin-top:20px;
+margin-bottom:15px;
+color:white;`
+const Tracks = styled.div`
+color:white;`
+
+
+const Artistsdiv = styled.div`
+display:flex;
+font-size:15px;
+margin-bottom:10px;
+
+`
+
+const Picture = styled.img`
+width:50px;
+border-radius:30px;`
+const Detail = styled.div`
+margin-left:20px;
+margin-top:5px;`
+const Detail1 = styled.div`
+color:white;`
+const Detail2 = styled.div`
+color:#979DA9;`
+
+
+
+
+
+const Albumsdiv = styled.div`
+display:flex;
+font-size:12px;
+margin-bottom:20px;`
+const Albumpicture = styled.img`
+width:50px;`
+const Albumdetail = styled.div`
+margin-left:20px;
+margin-top:5px;`
+const Albumdetail1 = styled.div`
+color:white;`
+const Albumdetail2 = styled.div`
+color:#979DA9`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//모달이당
+
+
+
+
+
+
+
+
+
+
+
 const Wrapper = styled.div`
 width: calc(100% - 240px);
 height: 80px;
