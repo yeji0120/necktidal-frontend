@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLoginBtn from 'react-facebook-login';
+import { YURL } from "config.js";
 import 'component/Facebook.css';
 import { withRouter } from 'react-router-dom';
 
@@ -12,7 +13,7 @@ class LoginFacebook extends Component {
     }
     responseFacebook = response => {
         console.log(response);
-        fetch('http://10.58.3.82:8000/account/social_signin', {
+        fetch(`${YURL}/account/social-signin`, {
             method: 'POST',
             headers: {'Authorization':response.accessToken
             }
@@ -40,17 +41,6 @@ class LoginFacebook extends Component {
     }
     componentClicked = () => {
         console.log('Facebook btn clicked');
-        // fetch('http://10.58.7.72:8000/account/social_signin ', {
-        //     method: 'POST',
-        //     headers: {
-        //     }
-        //   })
-        //   .then(response => { 
-        //       console.log(response)
-        //   })
-        //   .then(response => 
-        //     console.log(response)
-        //   )
     }
     
     render(){
@@ -88,11 +78,3 @@ class LoginFacebook extends Component {
     }
 }
 export default withRouter(LoginFacebook)
-
-
-{/* <FacebookLoginBtn
-                appId="804938803327633"
-                autoLoad={true}
-                fields="name,email,picture"
-                onClick={this.componentClicked}
-                callback={this.responseFacebook} /> */}

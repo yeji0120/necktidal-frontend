@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { YURL } from "config.js";
 import {FacebookCircle} from '@styled-icons/boxicons-logos/FacebookCircle';
 import {Twitter} from '@styled-icons/boxicons-logos/Twitter';
 import Logo from 'component/images/logoimages.png';
@@ -31,7 +32,7 @@ class Signupcreate extends Component {
         })
     }
     handleClick = e => {
-        fetch('http://10.58.3.196:8000/account/signup/ ', {
+        fetch(`${YURL}/account/signup/ `, {
             method: 'POST',
             headers: {
             },
@@ -381,6 +382,8 @@ margin-right:20px;`
 
 
 export default withRouter(Signupcreate);
+
+
 
 
 

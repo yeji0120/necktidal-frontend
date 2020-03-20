@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import styled, { css } from 'styled-components'
-import Modal from 'react-modal'
+import React, {useState, useEffect} from 'react';
+import styled, { css } from 'styled-components';
+import { YURL } from "config.js";
+import Modal from 'react-modal';
 import { BackgroundColor } from 'styled-icons/foundation';
 Modal.setAppElement('#root')
 
@@ -13,7 +14,7 @@ const NavPlaylists = () => {
     }
 
     const [title, setTitle] = useState('');
-    const [ desc, setDesc] = useState('');
+    const [desc, setDesc] = useState('');
     const [playlist, setPlaylist] = useState([])
     useEffect(()=>{
         console.log({
@@ -31,7 +32,7 @@ const NavPlaylists = () => {
     }
     let token = localStorage.getItem("token")
     const handlesave = () => {
-        fetch('http://10.58.3.82:8000/account/playlist',{
+        fetch(`${YURL}/account/playlist`,{
             method:'POST',
             headers:{'Authorization':token
             },
@@ -48,7 +49,7 @@ const NavPlaylists = () => {
         })
     }
     useEffect(()=>{
-        fetch('http://10.58.3.82:8000/account/playlist',{
+        fetch(`${YURL}/account/playlist`,{
             method:'GET',
             headers:{'Authorization':token
             }
@@ -61,7 +62,7 @@ const NavPlaylists = () => {
     },[]);
 
     const goDelete = (name) =>{
-        fetch(`http://10.58.3.82:8000/account/playlist`,{
+        fetch(`${YURL}/account/playlist`,{
             method: 'Delete',
             headers: {
                 'Authorization':token
