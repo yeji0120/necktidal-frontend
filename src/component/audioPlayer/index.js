@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {HURL} from 'config';
 import styled, { css } from "styled-components";
-import "./style.css";
 import { FocusOutlineHelper } from "./focusOutlineHelper";
-
 import { MdIcon } from "./mdIcon";
 
 const fmtDuration = seconds => {
@@ -698,9 +697,8 @@ function AudioPlayer(props) {
   return (
     <MediaContextProvider>
       <div>
-        <AudioTag />
-        {/* <AudioTag url="http://10.58.3.53:8002//music/track?track_id=${this.props.match.params.id}" /> */}
-        {/*  <AudioTag url={props로 받은 url주소를 여기에 넣는다 ex/props.url} /> */}
+        <AudioTag url={`${HURL}/music/track?track_id=65`} />
+         {/* <AudioTag url={props로 받은 url주소를 여기에 넣는다 ex/props.url} /> */}
       </div>
 
       <FocusOutlineHelper />

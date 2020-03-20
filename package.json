@@ -12,8 +12,10 @@
     "react-icons": "^3.9.0",
     "react-modal": "^3.11.2",
     "react-recaptcha": "^2.3.10",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.0.1",
     "styled-icons": "^10.2.1",
     "styled-reset": "^4.1.1"
