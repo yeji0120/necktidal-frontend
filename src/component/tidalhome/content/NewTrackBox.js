@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useHistory } from "react-router-dom";
 import {HURL, YURL} from 'config';
+import {showModalAction} from 'store/Actions/index'
+import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Heart} from '@styled-icons/boxicons-solid/Heart'
 import {ControllerPlay} from '@styled-icons/entypo/ControllerPlay'
@@ -23,8 +25,8 @@ const NewTrackBox = (props) => {
         setHeart(!isHeart);
     }
     const IsClickedPlay =() => {
-        history.push("/playlist")
-        fetch(`${HURL}music/track?track_id=${props.id}` ,{
+        // history.push("/playlist")
+        fetch(`${HURL}/music/track?track_id=${props.id}` ,{
             method: 'GET'
         })
     }
@@ -157,4 +159,8 @@ width:18px;
 height: auto;
 color: ${props => props.ColoredHeart ? "red" : "white"};
 `;
-export default NewTrackBox
+
+const mapStateToProps = state => {
+    return {showModal: state.showModal};
+}
+export default connect(mapStateToProps, {showModalAction}) (NewTrackBox)

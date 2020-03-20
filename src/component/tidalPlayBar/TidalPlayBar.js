@@ -25,14 +25,12 @@ const TidalPlayBar = props => {
               </SizeupBtn>
               <Album
                 size="60"
-                src={
-                  "https://resources.tidal.com/images/beefa965/780c/40f6/a52b/1011cfd234e4/320x320.jpg"
-                }
+                src={'https://resources.tidal.com/images/d4e294c4/975b/444e/b2d7/d0b2eeb0a607/320x320.jpg'}
               />
             </AlbumHoverBox>
             <MainInfo>
-              <MiniInfoTitle>OMG</MiniInfoTitle>
-              <MiniInfoArtist>Gryffin, Carly Rea Jepsen</MiniInfoArtist>
+              <MiniInfoTitle>Love Me Now</MiniInfoTitle>
+              <MiniInfoArtist>Phantagram</MiniInfoArtist>
               <PlayingFrom>Playing from: My Tracks</PlayingFrom>
             </MainInfo>
             <div style={{ margin: "0px 20px" }}>

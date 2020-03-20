@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from 'component/tidalhome/nav/Nav';
 import Header from 'component/tidalhome/header/Header';
 import AlbumBox from 'component/mycollection/AlbumBox';
-import { YURL } from "config";
+import { HURL } from "config";
 import styled from 'styled-components';
 
 
@@ -10,11 +10,10 @@ const AlbumMain = () => {
     const [data,setData] = useState([]);
 
     useEffect(()=>{
-        // fetch(`${HURL}/music/album/new?limit=1&days=7`,
-        fetch(`${YURL}/account/collection?category=album`,
+        fetch(`${HURL}/account/collection?category=album`,
         {method: "GET",
         headers: {
-            'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impva2VyMTIzQGFiYy5hYmMifQ.aPg4vew-qvimiQUNKIP4b2j6Nbxbk6FDZcrzhk992-M'
+            'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFhYUBuLmNvbSJ9.IFMAeiy2OMHXrn7URVhSa8_AwbcHu14fPljCeks75GA'
         },
     })
         .then(res => res.json())
