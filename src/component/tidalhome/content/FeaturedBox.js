@@ -8,7 +8,6 @@ const FeaturedBox = (props) => {
             <ImgWrapper>
                 <BackgroundImg src={props.img} alt="" />
                     <IMGContainer src={props.img} alt="">
-                        {/* <IMG src={props.img} alt="" /> */}
                     </IMGContainer>
             </ImgWrapper>
             <DetailWrapper>
@@ -58,19 +57,7 @@ transition: all 0.2s ease-in-out;
         -moz-transform: scale(1.1);
     }
 `;
-// const IMG =styled.img`
-// width: 100%;
-// height: 100%;
-// transform: scale(1); 
-// -webkit-transform: scale(1);
-// -moz-transform: scale(1);
-// transition: all 0.2s ease-in-out;
-//     &:hover {
-//         transform: scale(1.1);
-//         -webkit-transform: scale(1.1);
-//         -moz-transform: scale(1.1);
-//     }
-// `;
+
 // ---------Detail---------------
 const DetailWrapper = styled.div`
 width: 320px;
@@ -101,7 +88,6 @@ height: 24px;
 color: rgb(0, 255, 255);
 text-transform: uppercase;
 font-size: 12px;
-/* font-size: calc(12*calc(1rem/14)); */
 font-weight: 800;
 `;
 
@@ -110,8 +96,8 @@ width: 288px;
 height: 24px;
 color: white;
 font-size: 18px;
-/* font-size: calc(16*calc(1rem/14)); */
 font-weight: 700;
+text-overflow: ellipsis;
 `;
 
 const Subtitle = styled.div`
@@ -119,7 +105,8 @@ width: 288px;
 height: 24px;
 color: rgba(255, 255, 255, 0.5);
 font-size: 16px;
-/* font-size: calc(16*calc(1rem/14)); */
 font-weight: 500;
+overflow: hidden;
+text-overflow: ellipsis;
 `;
 export default FeaturedBox

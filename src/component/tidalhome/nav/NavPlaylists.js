@@ -245,7 +245,7 @@ align-items: center;
 `;
 const Title = styled.div`
 color: rgba(229, 238, 255, 0.6);;
-font-size: 13px;
+font-size: 16px;
 font-weight: 500;
 text-transform: uppercase;
 font-family: "national-bold";
@@ -334,7 +334,7 @@ fill: rgba(229, 238, 255, 0.6);`;
 
 const Text = styled.span`
 margin-left: 15px;
-font-size: 12px;
+font-size: 15px;
 color: white;
 `
 const Delete = styled.span`
