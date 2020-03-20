@@ -1,24 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import { useHistory } from 'react-router-dom';
+
+
 
 const Header = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
-
     const [search,setSearch] = useState('');
     const [Artist, setArtist] = useState([]);
+    let history = useHistory();
 
-    // useEffect(()=>{
-    //     fetch(`http://10.58.3.53:8002/music/?search=${search}&limit=3`,{
-    //     method:'GET'
-    //     })
-    //     .then(res => res.json())  
-    //     .then(res=>{
-    //         res && setArtist(res)     
-    //     })
-    // });
     //Artist에 search값이 한단계 늦게 입력되는것같다.
     //modal이 검색시 포커스를 잃는다
+
     const onChangeSearch = e =>{
         setSearch(e.target.value)
         setModalIsOpen(true)
@@ -34,32 +29,15 @@ const Header = (props) => {
         })
         }
     }
-    // useEffect(()=>{
-    //     const onChangeSearch = e =>{
-    //         setSearch(e.target.value)
-    //         if(e.target.value === ''){
-    //             setArtist([])
-    //         } else {
-    //         fetch(`http://10.58.3.53:8002/music/?search=${search}&limit=3`,{
-    //         method:'GET'
-    //         })
-    //         .then(res => res.json())  
-    //         .then(res=>{
-    //             res && setArtist(res)     
-    //         })
-    //         }
-    //     }
-    // })
-
-
-
+  
     return (
         <>
         <Wrapper>
             <Container>
                 <Left>
                     <ArrowIcon>
-                        <LeftBtn>
+                        <LeftBtn
+                        onClick={()=> history.push("/home")}>
                             <Path d="M 20 11.3 L 7.8 11.3 L 13.5 5.5 L 12.5 4.5 L 4.9 12 L 12.5 19.5 L 13.5 18.5 L 7.8 12.8 L 20 12.8 L 20 11.3 Z"/>
                         </LeftBtn>
                         <RightBtn>
@@ -190,35 +168,6 @@ const Albumdetail1 = styled.div`
 color:white;`
 const Albumdetail2 = styled.div`
 color:#979DA9`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//모달이당
-
-
-
-
-
-
-
-
-
-
 
 const Wrapper = styled.div`
 width: calc(100% - 240px);

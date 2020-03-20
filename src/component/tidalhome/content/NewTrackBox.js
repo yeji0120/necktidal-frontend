@@ -25,10 +25,7 @@ const NewTrackBox = (props) => {
         setHeart(!isHeart);
     }
     const IsClickedPlay =() => {
-        // history.push("/playlist")
-        fetch(`${HURL}/music/track?track_id=${props.id}` ,{
-            method: 'GET'
-        })
+       props.showModalAction();
     }
     return (
         <>

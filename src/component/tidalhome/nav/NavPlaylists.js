@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled, { css } from 'styled-components';
-import { YURL } from "config.js";
+import { HURL } from "config.js";
 import Modal from 'react-modal';
 import { BackgroundColor } from 'styled-icons/foundation';
 Modal.setAppElement('#root')
@@ -32,7 +32,7 @@ const NavPlaylists = () => {
     }
     let token = localStorage.getItem("token")
     const handlesave = () => {
-        fetch(`${YURL}/account/playlist`,{
+        fetch(`${HURL}/account/playlist`,{
             method:'POST',
             headers:{'Authorization':token
             },
@@ -47,9 +47,10 @@ const NavPlaylists = () => {
             return setModalIsOpen(false)
 
         })
+        window.location.reload(true)
     }
     useEffect(()=>{
-        fetch(`${YURL}/account/playlist`,{
+        fetch(`${HURL}/account/playlist`,{
             method:'GET',
             headers:{'Authorization':token
             }
@@ -62,7 +63,7 @@ const NavPlaylists = () => {
     },[]);
 
     const goDelete = (name) =>{
-        fetch(`${YURL}/account/playlist`,{
+        fetch(`${HURL}/account/playlist`,{
             method: 'Delete',
             headers: {
                 'Authorization':token
@@ -71,6 +72,7 @@ const NavPlaylists = () => {
                 playlist_name:name
             })
         }) 
+        window.location.reload(true)
     }
 
     return (

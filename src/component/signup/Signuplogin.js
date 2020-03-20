@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { keyframes,css } from 'styled-components';
-import { YURL } from "config.js";
+import { HURL } from "config.js";
 import {FacebookCircle} from '@styled-icons/boxicons-logos/FacebookCircle';
 import {Twitter} from '@styled-icons/boxicons-logos/Twitter';
 import Logo from 'component/images/logoimages.png';
@@ -37,7 +37,7 @@ class Signuplogin extends Component {
     }
     
     handleClick = e => {
-        fetch(`${YURL}/account`, {
+        fetch(`${HURL}/account/signup`, {
             method: 'POST',
             headers: {
             },
@@ -47,9 +47,9 @@ class Signuplogin extends Component {
             })
           })
           .then(response => { 
-            if (response.status === 200) {
+            if (response.status === 400) {
                 return this.goToCreateuser()
-            } else if (response.status === 400) {
+            } else if (response.status === 200) {
                 return this.goToLoginpassword()
             }
           })
