@@ -59,7 +59,7 @@ cursor: pointer;
 const TEXT = styled.div`
 margin-left: 11px;
 color: white;
-font-size: 15px;
+font-size: 18px;
 font-weight: 500;
 `;
 export default NavMenu

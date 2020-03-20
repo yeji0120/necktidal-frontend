@@ -27,7 +27,7 @@ const NewAlbumBox = (props) => {
                 'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impva2VyMTIzQGFiYy5hYmMifQ.aPg4vew-qvimiQUNKIP4b2j6Nbxbk6FDZcrzhk992-M'
             },
             body: JSON.stringify({
-                album_id: props.id
+                album_id: props.id    
             })
         })
 

@@ -8,12 +8,12 @@ const RecentlyPlayed = () => {
     const [isClicked,setIsClicked] = useState(0);
     
     useEffect( () => {
-        // fetch(`${HURL}music/?limit=1&days=7`,
-        fetch("http://localhost:3000/Data/NewAlbumData.json",
+        fetch(`${HURL}/music/track-last-played?limit=16`,
+        // fetch("http://localhost:3000/Data/NewAlbumData.json",
         {method: "GET"
     })
         .then(res => res.json())
-        .then(res => setData(res.albums))
+        .then(res => setData(res.tracks))
     }, [])
 
     const moveRight = () => {
@@ -56,9 +56,9 @@ const RecentlyPlayed = () => {
                         return (
                             <NewAlbumBox 
                             id={item.id}
-                            title={item.album}
-                            subtitle={item.artist[0].name}
-                            thumbnail={item.thumbnail_url}
+                            title={item.name}
+                            subtitle={item.artist_info[0].name}
+                            thumbnail={item.album_info[0].thumbnail_url}
                             />
                         )
                     })}
