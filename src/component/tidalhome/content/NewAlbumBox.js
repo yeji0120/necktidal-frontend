@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { useHistory } from "react-router-dom";
-import { YURL } from "config";
+import { HURL } from "config";
+
+
 import styled from 'styled-components'
 import {Heart} from '@styled-icons/boxicons-solid/Heart'
 import {MoreHorizontalOutline} from '@styled-icons/evaicons-outline/MoreHorizontalOutline'
@@ -21,13 +23,13 @@ const NewAlbumBox = (props) => {
     // let token = localStorage.getItem("token")
     // 토큰 자리에 token이라고 적으면 됨.
     const IsClickedHeart = () => {
-        fetch(`${YURL}/account/collection?category=album`,{
+        fetch(`${HURL}/account/collection?category=album`,{
             method:'POST',
             headers:{
-                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impva2VyMTIzQGFiYy5hYmMifQ.aPg4vew-qvimiQUNKIP4b2j6Nbxbk6FDZcrzhk992-M'
+                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFhYUBuLmNvbSJ9.IFMAeiy2OMHXrn7URVhSa8_AwbcHu14fPljCeks75GA'
             },
             body: JSON.stringify({
-                album_id: props.id
+                album_id: props.id    
             })
         })
 

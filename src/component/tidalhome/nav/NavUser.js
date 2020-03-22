@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styled, { css } from 'styled-components'
+import { HURL } from 'config'
 
 const NavUser = () => {
     const [isClicked, setIsClicked] = useState(false)
@@ -25,7 +26,7 @@ const NavUser = () => {
        <Wrapper draggable="false">
         <Container onClick={AddClick}>
             <UserIcon> 
-            <ID>{userInfo}</ID> 
+            <ID>Kim</ID> 
             </UserIcon>
             <MoreIcon>
                 <Circle />

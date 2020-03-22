@@ -57,11 +57,22 @@ const TidalPlayBar = props => {
               <SizeupBtn onClick={() => setSizeUp(true)}>
                 <SizeupIcon />
               </SizeupBtn>
+<<<<<<< HEAD
               <AlbumImg src={data.album_info[0].thumbnail_url} alt="AlbumImg" />
             </AlbumHoverBox>
             <MainInfo>
               <MiniInfoTitle>{data.name}</MiniInfoTitle>
               <MiniInfoArtist>{data.artist_info[0].name}</MiniInfoArtist>
+=======
+              <Album
+                size="60"
+                src={'https://resources.tidal.com/images/d4e294c4/975b/444e/b2d7/d0b2eeb0a607/320x320.jpg'}
+              />
+            </AlbumHoverBox>
+            <MainInfo>
+              <MiniInfoTitle>Love Me Now</MiniInfoTitle>
+              <MiniInfoArtist>Phantagram</MiniInfoArtist>
+>>>>>>> a69a044ce24f0fb501be996c38d29c16e3d97e50
               <PlayingFrom>Playing from: My Tracks</PlayingFrom>
             </MainInfo>
             <div style={{ margin: "0px 20px" }}>

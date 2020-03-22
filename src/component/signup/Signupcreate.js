@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { HURL } from "config.js";
 import {FacebookCircle} from '@styled-icons/boxicons-logos/FacebookCircle';
 import {Twitter} from '@styled-icons/boxicons-logos/Twitter';
 import Logo from 'component/images/logoimages.png';
@@ -16,6 +17,7 @@ const Tlogo = styled(Twitter)`
   right:183px;
   color: white;
 `
+
 class Signupcreate extends Component {
     state={
         email:"",
@@ -25,13 +27,16 @@ class Signupcreate extends Component {
         abled:"",
         oh:false
     }
+    goToHome = () =>{
+        this.props.history.push('/home')
+    }
     handleSave = e => {
         this.setState({
             [e.target.name]: e.target.value   
         })
     }
     handleClick = e => {
-        fetch('http://10.58.3.196:8000/account/signup/ ', {
+        fetch(`${HURL}/account/signup `, {
             method: 'POST',
             headers: {
             },
@@ -41,10 +46,10 @@ class Signupcreate extends Component {
             })
           })
           .then(response => { 
-            if (response.status === 404) {
-                alert(" no exist id");
+            if (response.status === 400) {
+                return this.goToHome()
             } else if (response.status === 200) {
-                return response
+                return this.goToHome()
             }
           })
           .then(response => 
@@ -381,6 +386,8 @@ margin-right:20px;`
 
 
 export default withRouter(Signupcreate);
+
+
 
 
 

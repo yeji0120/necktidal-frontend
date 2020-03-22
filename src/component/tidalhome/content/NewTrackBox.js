@@ -1,67 +1,68 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { HURL, YURL } from "config";
-import styled from "styled-components";
-import { Heart } from "@styled-icons/boxicons-solid/Heart";
-import { ControllerPlay } from "@styled-icons/entypo/ControllerPlay";
-import { Plus } from "@styled-icons/evaicons-solid/Plus";
-import { MoreHorizontalOutline } from "@styled-icons/evaicons-outline/MoreHorizontalOutline";
 import { ShowModalAction, PlayIdAction } from "store/Actions/index";
 import { connect } from "react-redux";
+import {HURL, YURL} from 'config';
+import {showModalAction} from 'store/Actions/index'
+import {connect} from 'react-redux'
+import styled from 'styled-components'
+import {Heart} from '@styled-icons/boxicons-solid/Heart'
+import {ControllerPlay} from '@styled-icons/entypo/ControllerPlay'
+import {Plus} from '@styled-icons/evaicons-solid/Plus'
+import {MoreHorizontalOutline} from '@styled-icons/evaicons-outline/MoreHorizontalOutline'
 
 const NewTrackBox = props => {
   let history = useHistory();
   const [isDisplayed, setIsDisplayed] = useState(false);
   const [isHeart, setHeart] = useState(false);
 
-  const IsEntered = () => {
-    setIsDisplayed(!isDisplayed);
-  };
-  const IsLeaved = () => {
-    setIsDisplayed(!isDisplayed);
-  };
-  const IsClickedHeart = () => {
-    //fetch post, 하트 색깔 바꾸기
-    setHeart(!isHeart);
-  };
-  const IsClickedPlay = id => {
-    props.PlayIdAction(id);
-  };
-  return (
-    <>
-      <Wrapper onMouseOver={IsEntered} onMouseOut={IsLeaved}>
-        <ImgContainer>
-          <IMG src={props.thumbnail} alt="" />
-        </ImgContainer>
-        <Title>{props.title}</Title>
-        <Artist>{props.artist}</Artist>
-        <Album>{props.album}</Album>
-        <Time>{props.time}</Time>
-        <Icons>
-          {/* <Btn> <PlusSvg /> </Btn>
-                <Btn> <HeartSvg /> </Btn> */}
-        </Icons>
-        <DIV isActive={isDisplayed}>
-          <IconDiv>
-            <PlayIcon onClick={() => IsClickedPlay(props.id)} />
-            <RightIcon>
-              <MoreIcon />
-              <PlusIcon />
-              <HeartIcon onClick={IsClickedHeart} ColoredHeart={isHeart} />
-            </RightIcon>
-          </IconDiv>
-        </DIV>
-      </Wrapper>
-    </>
-  );
-};
-const mapStateToProps = state => {
+  const mapStateToProps = state => {
   return { ShowModal: state.ShowModal, PlayId: state.PlayId };
 };
 
-export default connect(mapStateToProps, { ShowModalAction, PlayIdAction })(
-  NewTrackBox
+  export default connect(mapStateToProps, { ShowModalAction, PlayIdAction })(
+    NewTrackBox
 );
+
+    const IsEntered = () => {
+        setIsDisplayed(!isDisplayed);
+    }
+    const IsLeaved = () => {
+        setIsDisplayed(!isDisplayed);
+    }
+    const IsClickedHeart = () => {
+        //heart에 fetch 붙여야함 newalbumbox 참고
+        setHeart(!isHeart);
+    }
+    const IsClickedPlay =() => {
+       props.showModalAction();
+    }
+    return (
+        <>
+        <Wrapper onMouseOver={IsEntered} onMouseOut={IsLeaved}>
+            <ImgContainer>
+                <IMG src={props.thumbnail} alt=""/>
+            </ImgContainer>
+            <Title>{props.title}</Title>
+            <Artist>{props.artist}</Artist>
+            <Album>{props.album}</Album>
+            <Time>{props.time}</Time>
+            <Icons>
+            </Icons>
+            <DIV isActive={isDisplayed}>
+                <IconDiv>
+                    <PlayIcon onClick={IsClickedPlay}/>
+                    <RightIcon>
+                        <MoreIcon />
+                        <PlusIcon />
+                        <HeartIcon onClick={IsClickedHeart} ColoredHeart={isHeart}/>
+                    </RightIcon>
+                </IconDiv>
+            </DIV>
+        </Wrapper>
+        
+        </>
+    )}
 
 const Wrapper = styled.div`
   width: 100%;
@@ -118,27 +119,6 @@ const Icons = styled.div`
   display: flex;
   align-items: center;
 `;
-// const Btn = styled.button`
-// width:24px;
-// height: 24px;
-// border: none;
-// background-color: transparent;
-// &:focus {
-//     display: none;
-// }
-// `;
-// const PlusSvg = styled(Plus)`
-// width: 18px;
-// height: auto;
-// color: rgb(229, 238, 255, 0.6);
-// `;
-// const HeartSvg = styled(Heart)`
-// margin-top: 3px;
-// margin-left: 3px;
-// color: rgb(229, 238, 255, 0.6);
-// width:18px;
-// height: 18px;
-// `;
 
 const DIV = styled.div`
   width: 100%;

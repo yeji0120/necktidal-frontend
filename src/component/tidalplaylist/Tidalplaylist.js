@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import GlobalStyles from "component/GlobalStyles";
-
+import {HURL} from "config.js";
 import PlaylistHeaderContainer from "component/tidalplaylist/PlaylistHeader";
 import Album from "component/tidalplaylist/Album";
 import MiniInfoBox from "component/tidalplaylist/MiniInfoBox";
@@ -16,19 +16,19 @@ const Tidalplaylist = props => {
   const [trackData, setTrackData] = useState([]);
 
   const [url, setUrl] = useState(
-    "https://resources.tidal.com/images/beefa965/780c/40f6/a52b/1011cfd234e4/320x320.jpg"
-  );
+  'https://resources.tidal.com/images/d4e294c4/975b/444e/b2d7/d0b2eeb0a607/320x320.jpg')
+    ;
   const getTrackData = () => {
-    // fetch("http://10.58.3.53:8001/music/artist/84/toptrack")
-    fetch("http://localhost:3000/Data/Track.json")
+    fetch(`${HURL}/music/artist/86/toptrack`)
+    // fetch("http://localhost:3000/Data/Track.json")
       .then(res => res.json())
       .then(res => setTrackData(res.tracks));
   };
 
   const [albumData, setAlbumData] = useState([]);
   const getAlbumData = () => {
-    // fetch("http://10.58.3.53:8001/music/artist/84")
-    fetch("http://localhost:3000/Data/Artist.json")
+    fetch(`${HURL}/music/artist/86`)
+    // fetch("http://localhost:3000/Data/Artist.json")
       .then(res => res.json())
       .then(res => setAlbumData(res.artist));
   };
@@ -40,7 +40,7 @@ const Tidalplaylist = props => {
   useEffect(() => {
     getTrackData();
   }, []);
-  console.log("TrackData ::: ", trackData);
+  // console.log("TrackData ::: ", trackData);
 
   return (
     <div style={{ position: "relative" }}>

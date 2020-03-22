@@ -86,7 +86,7 @@ margin-left: 20px;
 margin-bottom: 5px;
 height:12px;
 color: rgba(229, 238, 255, 0.6);;
-font-size: 13px;
+font-size: 16px;
 font-weight: 500;
 text-transform: uppercase;
 font-family: "national-bold";
@@ -123,7 +123,7 @@ const Path = styled.path``;
 const Circle = styled.circle``;
 const Text = styled.span`
 margin-left: 15px;
-font-size: 13px;
+font-size: 15px;
 color: white;
 `
 export default NavCollection

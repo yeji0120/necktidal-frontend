@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import styled, { css } from 'styled-components'
-import Modal from 'react-modal'
+import React, {useState, useEffect} from 'react';
+import styled, { css } from 'styled-components';
+import { HURL } from "config.js";
+import Modal from 'react-modal';
 import { BackgroundColor } from 'styled-icons/foundation';
 Modal.setAppElement('#root')
 
@@ -13,7 +14,7 @@ const NavPlaylists = () => {
     }
 
     const [title, setTitle] = useState('');
-    const [ desc, setDesc] = useState('');
+    const [desc, setDesc] = useState('');
     const [playlist, setPlaylist] = useState([])
     useEffect(()=>{
         console.log({
@@ -31,7 +32,7 @@ const NavPlaylists = () => {
     }
     let token = localStorage.getItem("token")
     const handlesave = () => {
-        fetch('http://10.58.3.82:8000/account/playlist',{
+        fetch(`${HURL}/account/playlist`,{
             method:'POST',
             headers:{'Authorization':token
             },
@@ -46,9 +47,10 @@ const NavPlaylists = () => {
             return setModalIsOpen(false)
 
         })
+        window.location.reload(true)
     }
     useEffect(()=>{
-        fetch('http://10.58.3.82:8000/account/playlist',{
+        fetch(`${HURL}/account/playlist`,{
             method:'GET',
             headers:{'Authorization':token
             }
@@ -61,7 +63,7 @@ const NavPlaylists = () => {
     },[]);
 
     const goDelete = (name) =>{
-        fetch(`http://10.58.3.82:8000/account/playlist`,{
+        fetch(`${HURL}/account/playlist`,{
             method: 'Delete',
             headers: {
                 'Authorization':token
@@ -70,6 +72,7 @@ const NavPlaylists = () => {
                 playlist_name:name
             })
         }) 
+        window.location.reload(true)
     }
 
     return (
@@ -245,7 +248,7 @@ align-items: center;
 `;
 const Title = styled.div`
 color: rgba(229, 238, 255, 0.6);;
-font-size: 13px;
+font-size: 16px;
 font-weight: 500;
 text-transform: uppercase;
 font-family: "national-bold";
@@ -334,7 +337,7 @@ fill: rgba(229, 238, 255, 0.6);`;
 
 const Text = styled.span`
 margin-left: 15px;
-font-size: 12px;
+font-size: 15px;
 color: white;
 `
 const Delete = styled.span`
