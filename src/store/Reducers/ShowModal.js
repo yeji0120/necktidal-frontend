@@ -1,12 +1,12 @@
-import { SHOW_MODAL, CLOSE_MODAL } from "store/types";
+import {SHOW_MODAL, CLOSE_MODAL} from 'store/types'
 
-export default function ShowModal(state = false, action) {
-  switch (action.type) {
-    case SHOW_MODAL:
-      return action.showModal;
-    case CLOSE_MODAL:
-      return action.showModal;
-    default:
-      return state;
-  }
+export default function showModal(state = false, action) {
+    switch (action.type) {
+        case SHOW_MODAL:
+            return {...state, showModal:true};
+        case CLOSE_MODAL: 
+            return {...state, showMdal:false};
+        default:
+            return state;    
+    }
 }
