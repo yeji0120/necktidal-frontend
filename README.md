@@ -5,7 +5,8 @@
 - (Front-end) Yeji Choi, Minju Kim, Hyunjun Kim | (Back-end) Soheon Lee, Sooyeon Kim
 
 ## 유튜브 영상
-[!<img src="https://www.notion.so/TIDAL-5f493fe0a0704645934a79a7fa9dad21#321faea3e0634f08aff2037885b28416">](https://www.youtube.com/watch?v=_UWboxCVtvI)
+[![tidal](https://user-images.githubusercontent.com/60338561/123184101-f17fc980-d4cd-11eb-8b41-c9dc276496df.png)](https://www.youtube.com/watch?v=_UWboxCVtvI)
+
 
 ## 목표
 - Git Rebase 사용을 통해 commit history를 깔끔하게 관리
